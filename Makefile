@@ -6,7 +6,7 @@
 #    By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 15:41:53 by osalmine          #+#    #+#              #
-#    Updated: 2020/01/27 15:15:37 by osalmine         ###   ########.fr        #
+#    Updated: 2020/01/27 17:04:22 by osalmine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./sources/
-SOURCES_LIST = parse.c ft_exit.c free_strsplit.c
+SOURCES_LIST = parse.c ft_exit.c the_frees.c do_command.c swap.c
 SOURCES_LIST_PS = push_swap.c
 SOURCES_LIST_CH = checker.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))

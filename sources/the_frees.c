@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   the_frees.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/01/27 17:04:42 by osalmine         ###   ########.fr       */
+/*   Created: 2020/01/27 15:02:52 by osalmine          #+#    #+#             */
+/*   Updated: 2020/01/27 16:58:45 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/push_swap.h"
 
-# include "../libft/libft.h"
-
-typedef struct	s_ps
+void	free_struct(t_ps *stack)
 {
-	int *values;
-	int	amount;
-}				t_ps;
+	free(stack->values);
+	free(stack);
+}
 
-t_ps	*parse(int ac, char **av);
-void	ft_exit(char *str);
-void	free_strsplit(char ***str);
-void	do_command(t_ps *a_stack, t_ps *b_stack, char *str);
-void	sa(t_ps *a_stack);
-void	sb(t_ps *b_stack);
-void	ss(t_ps *a_stack, t_ps *b_stack);
+void	free_strsplit(char ***str)
+{
+	char **curr;
 
-#endif
+	if (str && *str)
+	{
+		curr = (*str);
+		while (*curr)
+			free(*(curr++));
+		free(*str);
+		str = NULL;
+	}
+}
