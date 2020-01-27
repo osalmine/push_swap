@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:53:46 by osalmine          #+#    #+#             */
-/*   Updated: 2020/01/24 13:20:12 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/01/27 12:09:47 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <string.h>
 # include <stdlib.h>
+# include "get_next_line.h"
 
 typedef struct		s_list
 {
@@ -97,5 +98,6 @@ char				**ft_strsplit(char const *s, char c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_words(const char *s, char c);
+int					get_next_line(const int fd, char **line);
 
 #endif

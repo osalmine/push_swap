@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 15:28:30 by osalmine          #+#    #+#             */
-/*   Updated: 2020/01/25 16:21:23 by osalmine         ###   ########.fr       */
+/*   Created: 2019/10/31 13:30:58 by osalmine          #+#    #+#             */
+/*   Updated: 2019/12/16 17:00:02 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef GET_NEXT_LINE_H
 
-# include "../libft/libft.h"
+# define GET_NEXT_LINE_H
 
-int	ft_checker(int ac, char **av);
+# include <stdlib.h>
+# include <unistd.h>
+
+# define FD_MAX 4100
+# define BUFF_SIZE 8
+
+int	get_next_line(const int fd, char **line);
 
 #endif

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   free_strsplit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/01/27 15:05:39 by osalmine         ###   ########.fr       */
+/*   Created: 2020/01/27 15:02:52 by osalmine          #+#    #+#             */
+/*   Updated: 2020/01/27 15:06:23 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../includes/push_swap.h"
 
-# include "../libft/libft.h"
-
-typedef struct	s_ps
+void	free_strsplit(char ***str)
 {
-	int *values;
-	int	amount;
-}				t_ps;
+	char **curr;
 
-t_ps	*parse(int ac, char **av);
-void	ft_exit(char *str);
-void	free_strsplit(char ***str);
-
-#endif
+	if (str && *str)
+	{
+		curr = (*str);
+		while (*curr)
+			free(*(curr++));
+		free(*str);
+		str = NULL;
+	}
+}
