@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 17:01:19 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 14:51:32 by osalmine         ###   ########.fr       */
+/*   Created: 2020/02/01 15:15:17 by osalmine          #+#    #+#             */
+/*   Updated: 2020/02/01 15:24:52 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	sa(t_ps *a_stack)
+void	ra(t_ps *a_stack)
 {
-	int temp;
+	int tmp;
 
-	if (a_stack->amount > 1)
-	{
-		temp = a_stack->values[0];
-		a_stack->values[0] = a_stack->values[1];
-		a_stack->values[1] = temp;
-	}
+	tmp = a_stack->values[0];
+	push_up(a_stack);
+	a_stack->values[a_stack->amount - 1] = tmp;
 }
 
-void	sb(t_ps *b_stack)
+void	rb(t_ps *b_stack)
 {
-	int temp;
+	int tmp;
 
-	if (b_stack->amount > 1)
-	{
-		temp = b_stack->values[0];
-		b_stack->values[0] = b_stack->values[1];
-		b_stack->values[1] = temp;
-	}
+	tmp = b_stack->values[0];
+	push_up(b_stack);
+	b_stack->values[b_stack->amount - 1] = tmp;
 }
 
-void	ss(t_ps *a_stack, t_ps *b_stack)
+void	rr(t_ps *a_stack, t_ps *b_stack)
 {
-	sa(a_stack);
-	sb(b_stack);
+	ra(a_stack);
+	rb(b_stack);
 }

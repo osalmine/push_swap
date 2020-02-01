@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/01/27 16:10:34 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/01 15:39:17 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void		ft_parse_nb(char **av, int ac, t_ps *stack)
 		i++;
 		stack->amount++;
 	}
+	stack->size = stack->amount;
 }
 
 static void	str_val_alloc(char **tmp, t_ps *stack)
@@ -54,7 +55,7 @@ void		ft_parse_str(char *str, t_ps *stack)
 	str_val_alloc(tmp, stack);
 	while (tmp[i] != NULL)
 	{
-		if (ft_isdigit(tmp[i][0]))
+		if (ft_isdigit(tmp[i][0]) || tmp[i][0] == '-')
 		{
 			if (!ft_isdigit(tmp[i][ft_nbs(ft_atoi(tmp[i]))]) &&
 				tmp[i][ft_nbs(ft_atoi(tmp[i]))])
@@ -67,6 +68,7 @@ void		ft_parse_str(char *str, t_ps *stack)
 		i++;
 	}
 	free_strsplit(&tmp);
+	stack->size = stack->amount;
 }
 
 t_ps		*parse(int ac, char **av)
