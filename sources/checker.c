@@ -6,24 +6,24 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:13 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 16:00:46 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/01 17:02:47 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdio.h>
 
-void	is_in_order(t_ps *stack, int check_size)
+int		is_in_order(t_ps *stack, int check_size)
 {
 	if (check_size && stack->size != stack->amount)
-		ft_exit("Error");
+		return (0);
 	while (stack->amount - 1 > 0)
 	{
 		if (stack->values[stack->amount - 1] < stack->values[stack->amount - 2])
-			ft_exit("KO");
+			return (0);
 		stack->amount--;
 	}
-	ft_putendl("Order OK");
+	return (1);
 }
 
 void	check(t_ps *a_stack)
@@ -33,6 +33,11 @@ void	check(t_ps *a_stack)
 	int		size;
 
 	str = NULL;
+	if (is_in_order(a_stack, 1))
+	{
+		ft_putendl("OK");
+		return ;
+	}
 	b_stack = b_init(a_stack);
 	printf("a_stack:\n");
 	for (int j = 0; j < a_stack->amount; j++) {
@@ -58,6 +63,8 @@ int		main(int argc, char **argv)
 {
 	t_ps *a_stack;
 
+	if (argc < 2)
+		return (0);
 	a_stack = parse(argc, argv);
 	if (a_stack != NULL)
 		ft_putendl("OK");

@@ -6,11 +6,32 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 15:39:17 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/01 16:50:42 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include <stdio.h>
+
+static int		check_dups(t_ps *stack)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < stack->amount)
+	{
+		j = i + 1;
+		while (j < stack->amount)
+		{
+			if (stack->values[i] == stack->values[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 void		ft_parse_nb(char **av, int ac, t_ps *stack)
 {
@@ -86,6 +107,11 @@ t_ps		*parse(int ac, char **av)
 			ft_parse_str(av[i], stack);
 		else
 			ft_parse_nb(av, ac, stack);
+	}
+	if (check_dups(stack))
+	{
+		printf("dups\n");
+		ft_exit("Error");
 	}
 	return (stack);
 }
