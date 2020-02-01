@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:13 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 15:39:04 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/01 16:00:46 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ int		main(int argc, char **argv)
 	else
 		ft_exit("Error");
 	check(a_stack);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 15:28:27 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/01 16:18:06 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	push_down(t_ps *stack);
 void	rra(t_ps *a_stack);
 void	rrb(t_ps *b_stack);
 void	rrr(t_ps *a_stack, t_ps *b_stack);
+int 	median(t_ps stack);
 
 #endif

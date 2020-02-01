@@ -6,7 +6,7 @@
 #    By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 15:41:53 by osalmine          #+#    #+#              #
-#    Updated: 2020/02/01 15:26:48 by osalmine         ###   ########.fr        #
+#    Updated: 2020/02/01 16:16:46 by osalmine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./sources/
 SOURCES_LIST =	parse.c ft_exit.c the_frees.c do_command.c swap.c b_init.c \
-				push.c rotate.c rev_rot.c
+				push.c rotate.c rev_rot.c utils.c
 SOURCES_LIST_PS = push_swap.c
 SOURCES_LIST_CH = checker.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
