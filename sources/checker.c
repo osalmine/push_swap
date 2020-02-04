@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:13 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 17:02:47 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:30:14 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	check(t_ps *a_stack)
 	}
 	if (size <= -1)
 		ft_exit("Error");
-	is_in_order(a_stack, 1);
+	if (is_in_order(a_stack, 1))
+		ft_putendl("OK");
 }
 
 int		main(int argc, char **argv)

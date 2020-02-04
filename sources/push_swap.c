@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 17:03:51 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/04 14:19:14 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 void	solve(t_ps *a_stack, t_ps *b_stack, int med)
 {
-
+	a_stack = NULL;
+	b_stack = NULL;
+	med = 0;
 }
 
 int main(int argc, char **argv)
