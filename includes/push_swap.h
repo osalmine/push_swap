@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 17:01:51 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/05 12:35:29 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	rra(t_ps *a_stack);
 void	rrb(t_ps *b_stack);
 void	rrr(t_ps *a_stack, t_ps *b_stack);
 int 	median(t_ps stack);
-int		is_in_order(t_ps *stack, int check_size);
+int		is_in_order(t_ps stack, int check_size);
 
 #endif

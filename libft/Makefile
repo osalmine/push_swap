@@ -6,7 +6,7 @@
 #    By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/24 14:46:14 by osalmine          #+#    #+#              #
-#    Updated: 2020/01/27 14:53:38 by osalmine         ###   ########.fr        #
+#    Updated: 2020/02/05 12:15:26 by osalmine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,19 +29,30 @@ OBJ = $(SOURCE:%.c=%.o)
 INCLUDE = libft.h
 FLAGS = -Wall -Werror -Wextra
 
+PRINTF_DIR = ft_printf/
+PRINTF_LIB = libftprintf.a
+
 all: $(NAME)
 
 $(NAME): $(INCLUDE) $(SOURCE)
 	@gcc $(FLAGS) -I$(INCLUDE) -c $(SOURCE)
+	@make -C $(PRINTF_DIR)
+	@cp $(PRINTF_DIR)$(PRINTF_LIB) $(NAME)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
+	@echo "Compiled $(NAME)"
 
 clean:
+	@make -C $(PRINTF_DIR) clean
 	@rm -f $(OBJ)
+	@echo "Cleaned obj files"
 
 fclean: clean
+	@make -C $(PRINTF_DIR) fclean
 	@rm -f $(NAME)
+	@echo "Cleaned $(NAME)"
 
 re: fclean all
+	@make -C $(PRINTF_DIR) re
 
 .PHONY: all clean fclean re

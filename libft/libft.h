@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:53:46 by osalmine          #+#    #+#             */
-/*   Updated: 2020/01/27 12:09:47 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/05 12:19:06 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char				*ft_itoa(int n);
 char				*ft_itoa_base(long long num, long long base, char up_lo);
 void				ft_itoa_base_s(long long num,
 					long long base, char u, char **s);
+char			*ft_itoa_base_us(size_t num, size_t base, char up_lo);
 int					ft_isalpha(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
@@ -67,6 +68,8 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+int					ft_printf(const char *format, ...);
+int					ft_fprintf(int fd, const char *format, ...);
 void				ft_strclr(char *s);
 size_t				ft_strlen(const char *str);
 int					ft_strcmp(const char *s1, const char *s2);

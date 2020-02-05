@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 13:07:59 by osalmine          #+#    #+#             */
-/*   Updated: 2020/01/24 13:17:22 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/05 12:24:52 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,29 @@ char			*ft_itoa_base(long long num, long long base, char up_lo)
 	if (minus)
 		str[0] = '-';
 	while (size > minus)
+	{
+		str[(size--) - 1] = ft_calculate_char(ft_abs(num % base), up_lo);
+		num /= base;
+	}
+	return (str);
+}
+
+char			*ft_itoa_base_us(size_t num, size_t base, char up_lo)
+{
+	char	*str;
+	int		size;
+
+	if (num == 0)
+	{
+		if (!(str = ft_strnew(1)))
+			return (NULL);
+		*str = '0';
+		return (str);
+	}
+	size = ft_nbs_base(num, base);
+	if (!(str = ft_strnew(size)))
+		return (NULL);
+	while (num)
 	{
 		str[(size--) - 1] = ft_calculate_char(ft_abs(num % base), up_lo);
 		num /= base;
