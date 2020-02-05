@@ -30,7 +30,6 @@ void	check(t_ps *a_stack)
 		ft_printf("%d: %d\n", j, a_stack->values[j]);
 	}
 	ft_printf("a_stack amount: %d, size: %d\n", a_stack->amount, a_stack->size);
-	ft_printf("a_stack smallest: %d and biggest %d\n", a_stack->smallest, a_stack->largest);
 	ft_printf("b_stack:\n");
 	for (int k = 0; k < b_stack->amount; k++) {
 		ft_printf("%d: %d\n", k, b_stack->values[k]);
@@ -38,6 +37,7 @@ void	check(t_ps *a_stack)
 	ft_printf("b_stack amount: %d, size: %d\n", b_stack->amount, b_stack->size);
 	while ((size = get_next_line(0, &str)) > 0)
 	{
+		ft_printf("command: %s\n", str);
 		do_command(a_stack, b_stack, str);
 		free(str);
 	}
@@ -56,10 +56,7 @@ int		main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	a_stack = parse(argc, argv);
-	if (a_stack != NULL)
-		ft_printf("OK\n");
-	else
-		ft_exit("Error");
+	a_stack->print = FALSE;
 	check(a_stack);
 	free_struct(a_stack);
 	return (0);

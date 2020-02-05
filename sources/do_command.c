@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 int		is_in_order(t_ps stack, int check_size)
 {
@@ -52,12 +51,12 @@ void	do_command(t_ps *a_stack, t_ps *b_stack, char *str)
 		rrr(a_stack, b_stack);
 	else
 		ft_exit("Error");
-	printf("a_stack:\n");
+	ft_printf("a_stack:\n");
 	for (int j = 0; j < a_stack->amount; j++) {
-		printf("%d: %d\n", j, a_stack->values[j]);
+		ft_printf("%d: %d\n", j, a_stack->values[j]);
 	}
-	printf("b_stack:\n");
+	ft_printf("b_stack:\n");
 	for (int k = 0; k < b_stack->amount; k++) {
-		printf("%d: %d\n", k, b_stack->values[k]);
+		ft_printf("%d: %d\n", k, b_stack->values[k]);
 	}
 }

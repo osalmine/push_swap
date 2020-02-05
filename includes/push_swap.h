@@ -15,6 +15,9 @@
 
 # include "../libft/libft.h"
 
+# define TRUE 1
+# define FALSE 0
+
 typedef struct	s_ps
 {
 	int *values;
@@ -22,6 +25,7 @@ typedef struct	s_ps
 	int size;
 	int smallest;
 	int largest;
+	int print;
 }				t_ps;
 
 t_ps			*parse(int ac, char **av);

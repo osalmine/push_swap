@@ -48,6 +48,8 @@ void		pa(t_ps *a_stack, t_ps *b_stack)
 		push_up(b_stack);
 		a_stack->amount++;
 		b_stack->amount--;
+		if (a_stack->print == TRUE)
+			ft_printf("pa\n");
 	}
 }
 
@@ -60,5 +62,7 @@ void		pb(t_ps *a_stack, t_ps *b_stack)
 		push_up(a_stack);
 		b_stack->amount++;
 		a_stack->amount--;
+		if (a_stack->print == TRUE)
+			ft_printf("pa\n");
 	}
 }

@@ -16,10 +16,11 @@ void	ra(t_ps *a_stack)
 {
 	int tmp;
 
-//	ft_printf("val[0]: %d\n", a_stack->values[0]);
 	tmp = a_stack->values[0];
 	push_up(a_stack);
 	a_stack->values[a_stack->amount - 1] = tmp;
+	if (a_stack->print == TRUE)
+		ft_printf("ra\n");
 }
 
 void	rb(t_ps *b_stack)
@@ -29,10 +30,14 @@ void	rb(t_ps *b_stack)
 	tmp = b_stack->values[0];
 	push_up(b_stack);
 	b_stack->values[b_stack->amount - 1] = tmp;
+	if (b_stack->print == TRUE)
+		ft_printf("rb\n");
 }
 
 void	rr(t_ps *a_stack, t_ps *b_stack)
 {
 	ra(a_stack);
 	rb(b_stack);
+	if (a_stack->print == TRUE)
+		ft_printf("rr\n");
 }

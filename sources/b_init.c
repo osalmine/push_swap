@@ -22,5 +22,6 @@ t_ps	*b_init(t_ps *a_stack)
 		ft_exit("Error");
 	b_stack->amount = 0;
 	b_stack->size = a_stack->size;
+	b_stack->print = a_stack->print;
 	return (b_stack);
 }
