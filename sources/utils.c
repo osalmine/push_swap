@@ -37,10 +37,6 @@ int			find_in_stack(t_ps *stack, int value)
 	int i;
 
 	i = 0;
-	ft_printf("find in stack stack:\n");
-	for (int j = 0; j < stack->amount; j++) {
-		ft_printf("[%d]: %d\n", j, stack->values[j]);
-	}
 	while (i < stack->amount)
 	{
 		ft_printf("stack val at i (%d) is %d and value is %d\n", i, stack->values[i], value);
@@ -68,7 +64,6 @@ void quicksort(int* data, int N)
   if( N <= 1 )
     return;
 
-  // Partition elements
   v = data[0];
   i = 0;
   j = N;
@@ -101,16 +96,7 @@ int			median(t_ps *stack)
 		arr[n] = stack->values[n];
 		n++;
 	}
-	ft_printf("arr bef quicksort:\n");
-	for (int j = 0; j < stack->amount; j++) {
-		ft_printf("[%d]: %d\n", j, arr[j]);
-	}
 	quicksort(arr, stack->amount);
-	ft_printf("stack aft quicksort:\n");
-	for (int i = 0; i < stack->amount; i++) {
-		ft_printf("[%d]: %d\n", i, stack->values[i]);
-	}
-	ft_printf("stack size: %d\n", stack->size);
 	n = stack->size;
 	n = (n + 1) / 2 - 1;
 	ft_printf("Median : %d\n", arr[n]);

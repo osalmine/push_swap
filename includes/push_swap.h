@@ -47,7 +47,7 @@ int				is_in_order(t_ps stack, int check_size);
 void			free_struct(t_ps *stack);
 void			ft_small_big(t_ps *stack);
 void			swap(int *a, int *b);
-void			solve(t_ps *a_stack, t_ps *b_stack, int med);
+void			solve(t_ps *a_stack, t_ps *b_stack);
 void			solve_3(t_ps *a_stack);
 void			ft_split(t_ps *a_stack, t_ps *b_stack, int med);
 int				find_in_stack(t_ps *stack, int value);
