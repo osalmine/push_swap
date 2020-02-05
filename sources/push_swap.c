@@ -12,40 +12,15 @@
 
 #include "../includes/push_swap.h"
 
-void	quicksort(int *data, int n)
-{
-	int i;
-	int j;
-	int v;
-
-	if (n <= 1)
-		return ;
-	v = data[0];
-	i = 0;
-	j = n;
-	while (1)
-	{
-		while (data[i] < v && i < n)
-			i++;
-		while (data[j] > v)
-			j--;
-		if (i >= j)
-			break ;
-		swap(&data[i], &data[j]);
-	}
-	swap(&data[i - 1], &data[0]);
-	quicksort(data, i - 1);
-	quicksort(data + i, n - i);
-}
-
 void	ft_split(t_ps *a_stack, t_ps *b_stack, int med)
 {
 	int i;
 
+	ft_printf("a_stack smallest: %d, med: %d\n", a_stack->smallest, med);
 	while (a_stack->smallest <= med)
 	{
 		ft_printf("a_stack smallest: %d\n", a_stack->smallest);
-		i = a_stack->values[find_in_stack(a_stack, a_stack->smallest)]aa;
+		i = a_stack->values[find_in_stack(a_stack, a_stack->smallest)];
 		ft_printf("i: %d, stack size / 2: %d\n", i, a_stack->size / 2);
 		ft_printf("a_stack values[0]: %d\n", a_stack->values[0]);
 		if (i < a_stack->size / 2)
@@ -102,15 +77,7 @@ int		main(int argc, char **argv)
 		ft_printf("OK\n");
 		return (0);
 	}
-	ft_printf("a stack before median:\n");
-	for (int j = 0; j < a_stack->amount; j++) {
-		ft_printf("[%d]: %d\n", j, a_stack->values[j]);
-	}
 	med = median(a_stack);
-	ft_printf("a stack after median:\n");
-	for (int i = 0; i < a_stack->amount; i++) {
-		ft_printf("[%d]: %d\n", i, a_stack->values[i]);
-	}
 	b_stack = b_init(a_stack);
 	ft_printf("stack size (%d) / 2 = %d\n", a_stack->size, a_stack->size / 2);
 	solve(a_stack, b_stack, med);
