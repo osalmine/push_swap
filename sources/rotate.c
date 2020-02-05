@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 15:15:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 15:24:52 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/05 15:31:32 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ra(t_ps *a_stack)
 {
 	int tmp;
 
+//	ft_printf("val[0]: %d\n", a_stack->values[0]);
 	tmp = a_stack->values[0];
 	push_up(a_stack);
 	a_stack->values[a_stack->amount - 1] = tmp;

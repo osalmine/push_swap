@@ -6,12 +6,25 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:49:48 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 15:27:58 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/05 15:48:49 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdio.h>
+
+int		is_in_order(t_ps stack, int check_size)
+{
+	if (check_size && stack.size != stack.amount)
+		return (0);
+	while (stack.amount - 1 > 0)
+	{
+		if (stack.values[stack.amount - 1] < stack.values[stack.amount - 2])
+			return (0);
+		stack.amount--;
+	}
+	return (1);
+}
 
 void	do_command(t_ps *a_stack, t_ps *b_stack, char *str)
 {

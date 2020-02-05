@@ -6,12 +6,11 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 16:50:42 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/05 15:39:01 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 static int		check_dups(t_ps *stack)
 {
@@ -102,16 +101,15 @@ t_ps		*parse(int ac, char **av)
 	if (ac >= 2)
 	{
 		if (!(stack = (t_ps*)malloc(sizeof(t_ps))))
-			return (NULL);
+			ft_exit("Error");
+		stack->amount = 0;
 		if (ac == 2 && ft_strlen(av[i]) > 1)
 			ft_parse_str(av[i], stack);
 		else
 			ft_parse_nb(av, ac, stack);
 	}
 	if (check_dups(stack))
-	{
-		printf("dups\n");
 		ft_exit("Error");
-	}
+	ft_small_big(stack);
 	return (stack);
 }

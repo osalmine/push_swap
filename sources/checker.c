@@ -6,24 +6,11 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:13 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/05 12:36:17 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/05 15:48:52 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int		is_in_order(t_ps stack, int check_size)
-{
-	if (check_size && stack.size != stack.amount)
-		return (0);
-	while (stack.amount - 1 > 0)
-	{
-		if (stack.values[stack.amount - 1] < stack.values[stack.amount - 2])
-			return (0);
-		stack.amount--;
-	}
-	return (1);
-}
 
 void	check(t_ps *a_stack)
 {
@@ -43,6 +30,7 @@ void	check(t_ps *a_stack)
 		ft_printf("%d: %d\n", j, a_stack->values[j]);
 	}
 	ft_printf("a_stack amount: %d, size: %d\n", a_stack->amount, a_stack->size);
+	ft_printf("a_stack smallest: %d and biggest %d\n", a_stack->smallest, a_stack->largest);
 	ft_printf("b_stack:\n");
 	for (int k = 0; k < b_stack->amount; k++) {
 		ft_printf("%d: %d\n", k, b_stack->values[k]);
@@ -58,6 +46,7 @@ void	check(t_ps *a_stack)
 	if (!is_in_order(*a_stack, 1))
 		ft_exit("KO");
 	ft_printf("OK\n");
+	free_struct(b_stack);
 }
 
 int		main(int argc, char **argv)
@@ -72,5 +61,6 @@ int		main(int argc, char **argv)
 	else
 		ft_exit("Error");
 	check(a_stack);
+	free_struct(a_stack);
 	return (0);
 }

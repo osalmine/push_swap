@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/05 12:35:29 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/05 15:36:00 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,36 @@ typedef struct	s_ps
 	int *values;
 	int	amount;
 	int size;
+	int smallest;
+	int largest;
 }				t_ps;
 
-t_ps	*parse(int ac, char **av);
-void	ft_exit(char *str);
-void	free_strsplit(char ***str);
-void	do_command(t_ps *a_stack, t_ps *b_stack, char *str);
-t_ps	*b_init(t_ps *a_stack);
-void	sa(t_ps *a_stack);
-void	sb(t_ps *b_stack);
-void	ss(t_ps *a_stack, t_ps *b_stack);
-void	pa(t_ps *a_stack, t_ps *b_stack);
-void	pb(t_ps *a_stack, t_ps *b_stack);
-void	ra(t_ps *a_stack);
-void	rb(t_ps *b_stack);
-void	rr(t_ps *a_stack, t_ps *b_stack);
-void	push_up(t_ps *stack);
-void	push_down(t_ps *stack);
-void	rra(t_ps *a_stack);
-void	rrb(t_ps *b_stack);
-void	rrr(t_ps *a_stack, t_ps *b_stack);
-int 	median(t_ps stack);
-int		is_in_order(t_ps stack, int check_size);
+t_ps			*parse(int ac, char **av);
+void			ft_exit(char *str);
+void			free_strsplit(char ***str);
+void			do_command(t_ps *a_stack, t_ps *b_stack, char *str);
+t_ps			*b_init(t_ps *a_stack);
+void			sa(t_ps *a_stack);
+void			sb(t_ps *b_stack);
+void			ss(t_ps *a_stack, t_ps *b_stack);
+void			pa(t_ps *a_stack, t_ps *b_stack);
+void			pb(t_ps *a_stack, t_ps *b_stack);
+void			ra(t_ps *a_stack);
+void			rb(t_ps *b_stack);
+void			rr(t_ps *a_stack, t_ps *b_stack);
+void			push_up(t_ps *stack);
+void			push_down(t_ps *stack);
+void			rra(t_ps *a_stack);
+void			rrb(t_ps *b_stack);
+void			rrr(t_ps *a_stack, t_ps *b_stack);
+int				median(t_ps *stack);
+int				is_in_order(t_ps stack, int check_size);
+void			free_struct(t_ps *stack);
+void			ft_small_big(t_ps *stack);
+void			swap(int *a, int *b);
+void			solve(t_ps *a_stack, t_ps *b_stack, int med);
+void			solve_3(t_ps *a_stack);
+void			ft_split(t_ps *a_stack, t_ps *b_stack, int med);
+int				find_in_stack(t_ps *stack, int value);
 
 #endif
