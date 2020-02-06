@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/05 15:36:00 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:52:00 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 
 # define TRUE 1
 # define FALSE 0
+
+/*
+**	Struct:
+**	Values holds all of the numbers in the stack
+**	Amount is the current amount of numbers in the a_stack
+**	Size is the allocated size of the a_stack
+**	Smallest is the smallest checked number in the stack
+**	Largest is the same as smallest but largest
+**	Print can be set to TRUE (=1) so the command executed is printed
+*/
 
 typedef struct	s_ps
 {
@@ -44,16 +54,18 @@ void			rr(t_ps *a_stack, t_ps *b_stack);
 void			push_up(t_ps *stack);
 void			push_down(t_ps *stack);
 void			rra(t_ps *a_stack);
+void			rra_push_down(t_ps *stack);
 void			rrb(t_ps *b_stack);
 void			rrr(t_ps *a_stack, t_ps *b_stack);
 int				median(t_ps *stack);
 int				is_in_order(t_ps stack, int check_size);
 void			free_struct(t_ps *stack);
 void			ft_small_big(t_ps *stack);
-void			swap(int *a, int *b);
 void			solve(t_ps *a_stack, t_ps *b_stack);
 void			solve_3(t_ps *a_stack);
-void			ft_split(t_ps *a_stack, t_ps *b_stack, int med);
+void			ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref);
 int				find_in_stack(t_ps *stack, int value);
+int				ft_insert(t_ps *a_stack, t_ps *b_stack);
+void			sorted_numbers(t_ps *ref, int n);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:02 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/05 15:57:45 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:51:41 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void		ft_small_big(t_ps *stack)
+void	ft_small_big(t_ps *stack)
 {
 	int smallest;
 	int largest;
@@ -32,7 +32,7 @@ void		ft_small_big(t_ps *stack)
 	stack->largest = largest;
 }
 
-int			find_in_stack(t_ps *stack, int value)
+int		find_in_stack(t_ps *stack, int value)
 {
 	int i;
 
@@ -47,49 +47,49 @@ int			find_in_stack(t_ps *stack, int value)
 	return (-1);
 }
 
-void		swap(int *a, int *b)
+void	sorted_numbers(t_ps *ref, int n)
 {
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	push_down(ref);
+	ref->values[0] = n;
+	ref->amount++;
 }
 
-void quicksort(int* data, int N)
+void	quicksort(int *data, int n)
 {
-  int i, j;
-  int v, t;
+	int i;
+	int j;
+	int v;
+	int t;
 
-  if( N <= 1 )
-    return;
-
-  v = data[0];
-  i = 0;
-  j = N;
-  for(;;)
-  {
-    while(data[++i] < v && i < N) { }
-    while(data[--j] > v) { }
-    if( i >= j )
-      break;
-    t = data[i];
-    data[i] = data[j];
-    data[j] = t;
-  }
-  t = data[i-1];
-  data[i-1] = data[0];
-  data[0] = t;
-  quicksort(data, i-1);
-  quicksort(data+i, N-i);
+	if (n <= 1)
+		return ;
+	v = data[0];
+	i = 0;
+	j = n;
+	while (1)
+	{
+		while (data[++i] < v && i < n) ;
+		while (data[--j] > v) ;
+		if (i >= j)
+			break ;
+		t = data[i];
+		data[i] = data[j];
+		data[j] = t;
+	}
+	t = data[i - 1];
+	data[i - 1] = data[0];
+	data[0] = t;
+	quicksort(data, i - 1);
+	quicksort(data + i, n - i);
 }
 
-int			median(t_ps *stack)
+int		median(t_ps *stack)
 {
 	int n;
 	int *arr;
 
-	arr = (int*)malloc(sizeof(int) * stack->amount);
+	if (!(arr = (int*)malloc(sizeof(int) * stack->amount)))
+		ft_exit("Error");
 	n = 0;
 	while (n < stack->amount)
 	{
@@ -97,7 +97,7 @@ int			median(t_ps *stack)
 		n++;
 	}
 	quicksort(arr, stack->amount);
-	n = stack->size;
+	n = stack->amount;
 	n = (n + 1) / 2 - 1;
 	// ft_printf("Median : %d\n", arr[n]);
 	free(arr);
