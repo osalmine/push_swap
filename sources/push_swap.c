@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/05 15:59:37 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/06 09:24:18 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_split(t_ps *a_stack, t_ps *b_stack, int med)
 	int num;
 	int i;
 
-	while (a_stack->smallest <= med)
+	med = 0;
+	while (a_stack->smallest < a_stack->largest)
 	{
 		i = find_in_stack(a_stack, a_stack->smallest);
 		num = a_stack->values[i];

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:13 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/05 15:48:52 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/06 09:28:35 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ void	check(t_ps *a_stack)
 		return ;
 	}
 	b_stack = b_init(a_stack);
-	ft_printf("a_stack:\n");
-	for (int j = 0; j < a_stack->amount; j++) {
-		ft_printf("%d: %d\n", j, a_stack->values[j]);
-	}
-	ft_printf("a_stack amount: %d, size: %d\n", a_stack->amount, a_stack->size);
-	ft_printf("b_stack:\n");
-	for (int k = 0; k < b_stack->amount; k++) {
-		ft_printf("%d: %d\n", k, b_stack->values[k]);
-	}
-	ft_printf("b_stack amount: %d, size: %d\n", b_stack->amount, b_stack->size);
+	// ft_printf("a_stack:\n");
+	// for (int j = 0; j < a_stack->amount; j++) {
+	// 	ft_printf("%d: %d\n", j, a_stack->values[j]);
+	// }
+	// ft_printf("a_stack amount: %d, size: %d\n", a_stack->amount, a_stack->size);
+	// ft_printf("b_stack:\n");
+	// for (int k = 0; k < b_stack->amount; k++) {
+	// 	ft_printf("%d: %d\n", k, b_stack->values[k]);
+	// }
+	// ft_printf("b_stack amount: %d, size: %d\n", b_stack->amount, b_stack->size);
 	while ((size = get_next_line(0, &str)) > 0)
 	{
-		ft_printf("command: %s\n", str);
+//		ft_printf("command: %s\n", str);
 		do_command(a_stack, b_stack, str);
 		free(str);
 	}

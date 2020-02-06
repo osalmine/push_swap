@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 09:01:19 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/01 15:19:37 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/06 09:27:59 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void		pb(t_ps *a_stack, t_ps *b_stack)
 		b_stack->amount++;
 		a_stack->amount--;
 		if (a_stack->print == TRUE)
-			ft_printf("pa\n");
+			ft_printf("pb\n");
 	}
 }
