@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 15:30:14 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:59:26 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 			// ft_printf(BOLD RED"AAAAAAAAAAA\n"RESET);
 			// read (0, s, 1);
 		}
+		else if (b_next_int_order(ref, a_stack, b_stack))
+		{
+			pa(a_stack, b_stack);
+			ra(a_stack);
+			i = a_stack->values[a_stack->amount - 1];
+			limit++;
+		}
 		else if (a_stack->values[0] <= med)
 		{
 			pb(a_stack, b_stack);
@@ -44,6 +51,7 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 		}
 		else if (j > 0)
 			ra(a_stack);
+		// if (find_in_stack(a_stack, a_stack->smallest))
 		// ft_printf("\nj is : %d\n", j);
 		// ft_printf("a stack:\n");
 		// for (int k = 0; k < a_stack->amount; k++) {
@@ -63,7 +71,7 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 		ra(a_stack);
 		i = a_stack->values[a_stack->amount - 1];
 	}
-	// ft_printf(RED"\nSTACKS BEFORE RRA ROTATION\n"RESET);
+	// ft_printf(RED"\nSTACKS BEFORE RA ROTATION\n"RESET);
 	// ft_printf("i: %d\n", i);
 	// ft_printf("a stack:\n");
 	// for (int i = 0; i < a_stack->amount; i++) {
@@ -214,15 +222,15 @@ void	solve(t_ps *a_stack, t_ps *b_stack)
 		// ft_printf(RED BOLD"\nSTACKS BEFORE RRA ROTATION\n"RESET);
 		// ft_printf("median : %d\n", med);
 		// ft_printf("a stack:\n");
-// 		for (int i = 0; i < a_stack->amount; i++) {
-// 			ft_printf("[%d]: %d\n", i, a_stack->values[i]);
-// 		}
-// 		ft_printf("b stack:\n");
-// 		for (int j = 0; j < b_stack->amount; j++) {
-// 			ft_printf("[%d]: %d\n", j, b_stack->values[j]);
-// 		}
-//		read (0, s, 1);
-// 		ft_printf(RED BOLD"\n\nNEW ROUND\n\n"RESET);
+		// for (int i = 0; i < a_stack->amount; i++) {
+		// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
+		// }
+		// ft_printf("b stack:\n");
+		// for (int j = 0; j < b_stack->amount; j++) {
+		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+		// }
+		// read (0, s, 1);
+		// ft_printf(RED BOLD"\n\nNEW ROUND\n\n"RESET);
 	}
 	free_struct(ref);
 	// ft_printf("a stack:\n");

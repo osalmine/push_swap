@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:25:05 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 12:03:23 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:49:03 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		next_in_order(t_ps *ref, t_ps *stack)
 	int stack_print_copy;
 
 	stack_print_copy = stack->print;
-	if (check_with_ref(ref, stack))
+	if (check_with_ref(ref, stack) && stack->amount > 1)
 	{
 		stack->print = FALSE;
 		ra(stack);
@@ -60,4 +60,32 @@ int		count_nbs_under_med(t_ps *stack, int med)
 		i++;
 	}
 	return (count);
+}
+
+int		b_next_int_order(t_ps *ref, t_ps* a_stack, t_ps *b_stack)
+{
+	int stack_print_copy;
+
+	stack_print_copy = a_stack->print;
+	if (check_with_ref(ref, a_stack) && a_stack->amount > 1 \
+		&& b_stack->amount > 1)
+	{
+		a_stack->print = FALSE;
+		b_stack->print = FALSE;
+		pa(a_stack, b_stack);
+		ra(a_stack);
+		if (check_with_ref(ref, a_stack))
+		{
+			rra(a_stack);
+			pb(a_stack, b_stack);
+			a_stack->print = stack_print_copy;
+			b_stack->print = stack_print_copy;
+			return (1);
+		}
+		rra(a_stack);
+		pb(a_stack, b_stack);
+		a_stack->print = stack_print_copy;
+		b_stack->print = stack_print_copy;
+	}
+	return (0);
 }
