@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/06 15:52:00 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 12:43:46 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,18 @@ void			rra(t_ps *a_stack);
 void			rra_push_down(t_ps *stack);
 void			rrb(t_ps *b_stack);
 void			rrr(t_ps *a_stack, t_ps *b_stack);
-int				median(t_ps *stack);
+int				median(t_ps *stack, int no_limit);
 int				is_in_order(t_ps stack, int check_size);
 void			free_struct(t_ps *stack);
 void			ft_small_big(t_ps *stack);
 void			solve(t_ps *a_stack, t_ps *b_stack);
 void			solve_3(t_ps *a_stack);
-void			ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref);
+int				ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref);
 int				find_in_stack(t_ps *stack, int value);
-int				ft_insert(t_ps *a_stack, t_ps *b_stack);
-void			sorted_numbers(t_ps *ref, int n);
+void			ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit);
+t_ps			*ref_stack(t_ps *a_stack);
+int				check_with_ref(t_ps *ref, t_ps *stack);
+int				next_in_order(t_ps *ref, t_ps *stack);
+int				count_nbs_under_med(t_ps *stack, int med);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 14:53:46 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/05 12:19:06 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 10:44:52 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include "get_next_line.h"
+# include "ft_printf/ft_printf.h"
 
 typedef struct		s_list
 {

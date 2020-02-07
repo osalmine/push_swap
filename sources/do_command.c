@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:49:48 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/06 13:42:12 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 12:52:58 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		is_in_order(t_ps stack, int check_size)
 			return (0);
 		stack.amount--;
 	}
-	ft_printf("Is in order!\n");
+	// ft_printf("Is in order!\n");
 	return (1);
 }
 
