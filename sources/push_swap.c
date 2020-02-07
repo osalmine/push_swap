@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 14:01:54 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:30:14 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,9 +170,22 @@ void	solve_3(t_ps *a_stack)
 	if (a_stack->amount <= 1)
 		return ;
 	i = a_stack->size - 1;
-	while (i--)
+	if (is_in_order(*a_stack, 1))
+		return ;
+	if (a_stack->amount == 2)
+		sa(a_stack);
+	ft_small_big(a_stack);
+	while (!is_in_order(*a_stack, 1))
 	{
-
+		if (a_stack->largest == a_stack->values[i])
+			sa(a_stack);
+		else if (a_stack->smallest == a_stack->values[0])
+		{
+			sa(a_stack);
+			ra(a_stack);
+		}
+		else
+			ra(a_stack);
 	}
 }
 
@@ -184,8 +197,6 @@ void	solve(t_ps *a_stack, t_ps *b_stack)
 	int		limit;
 
 	med = median(a_stack, 0);
-	if (a_stack->size <= 3)
-		solve_3(a_stack);
 	// ft_printf("a stack:\n");
 	// for (int i = 0; i < a_stack->amount; i++) {
 	// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
@@ -237,7 +248,10 @@ int		main(int argc, char **argv)
 		return (0);
 	b_stack = b_init(a_stack);
 	// ft_printf("stack size (%d) / 2 = %d\n", a_stack->size, a_stack->size / 2);
-	solve(a_stack, b_stack);
+	if (a_stack->size > 3)
+		solve(a_stack, b_stack);
+	else
+		solve_3(a_stack);
 	free_struct(a_stack);
 	free_struct(b_stack);
 	return (0);
