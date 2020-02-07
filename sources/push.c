@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 09:01:19 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/06 13:40:04 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 19:45:02 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,17 @@ void		pa(t_ps *a_stack, t_ps *b_stack)
 		a_stack->amount++;
 		b_stack->amount--;
 		if (a_stack->print == TRUE)
+		{
 			ft_printf("pa\n");
+			// ft_printf("a stack:\n");
+			// for (int a = 0; a < a_stack->amount; a++) {
+			// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
+			// }
+			// ft_printf("b stack:\n");
+			// for (int j = 0; j < b_stack->amount; j++) {
+			// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+			// }
+		}
 	}
 }
 
@@ -129,6 +139,16 @@ void		pb(t_ps *a_stack, t_ps *b_stack)
 		// ft_printf("\n");
 //		read(0, s, 1);
 		if (a_stack->print == TRUE)
+		{
 			ft_printf("pb\n");
+			// ft_printf("a stack:\n");
+			// for (int a = 0; a < a_stack->amount; a++) {
+			// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
+			// }
+			// ft_printf("b stack:\n");
+			// for (int j = 0; j < b_stack->amount; j++) {
+			// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+			// }
+		}
 	}
 }

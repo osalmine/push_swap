@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 15:59:26 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 19:45:12 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,33 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	int j;
 	// int numb = a_stack->values[a_stack->amount - 1];
 	int limit;
+	int nbs_und_med;
 	// char s[1];
 
 	// ft_printf(GREEN"\n\nFT_SPLIT\n\n"RESET);
 	i = 0;
 	j = a_stack->amount - 1;
 	limit = 0;
+	// ft_printf("BEFORE COUNT a stack:\n");
+	// for (int a = 0; a < a_stack->amount; a++) {
+	// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
+	// }
+	nbs_und_med = nbs_under_med(a_stack, med) - amount_in_order(ref, a_stack);
+	// ft_printf("\nMed : %d\n", med);
+	// ft_printf("nbs_under_med: %d, amount_in_order: %d\n", nbs_under_med(a_stack, med), amount_in_order(ref, a_stack));
+	// ft_printf("Nbs und med: %d\n", nbs_und_med);
 	// ft_printf("median is: %d, j is: %d\n", med, j);
-	while (j-- > 0 && !is_in_order(*a_stack, 1))
+	while (j-- > 0 && !is_in_order(*a_stack, 1) && nbs_und_med > 0)
 	{
+		// ft_printf("\nNbs und med: %d\n", nbs_und_med);
 		if ((next_in_order(ref, a_stack) \
 			|| a_stack->values[0] == a_stack->smallest) && !is_in_order(*a_stack, 1))
 		{
 			ra(a_stack);
 			i = a_stack->values[a_stack->amount - 1];
 			limit++;
-			// ft_printf(BOLD RED"AAAAAAAAAAA\n"RESET);
+			nbs_und_med--;
+			// ft_printf(BOLD RED"YEET\n"RESET);
 			// read (0, s, 1);
 		}
 		else if (b_next_int_order(ref, a_stack, b_stack))
@@ -43,14 +54,23 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 			ra(a_stack);
 			i = a_stack->values[a_stack->amount - 1];
 			limit++;
+			// ft_printf(BOLD RED"NOOOO\n"RESET);
+			// read (0, s, 1);
 		}
-		else if (a_stack->values[0] <= med)
+		else
 		{
-			pb(a_stack, b_stack);
+			next_nb_under_med(ref, a_stack, b_stack, med);
+			nbs_und_med--;
 			j++;
 		}
-		else if (j > 0)
-			ra(a_stack);
+		// else if (a_stack->values[0] <= med)
+		// {
+		// 	pb(a_stack, b_stack);
+		// 	j++;
+		// 	nbs_und_med--;
+		// }
+		// else if (j > 0)
+		// 	ra(a_stack);
 		// if (find_in_stack(a_stack, a_stack->smallest))
 		// ft_printf("\nj is : %d\n", j);
 		// ft_printf("a stack:\n");
@@ -65,12 +85,12 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
 		// }
 	}
-	if (next_in_order(ref, a_stack) \
-		|| a_stack->values[0] == a_stack->smallest)
-	{
-		ra(a_stack);
-		i = a_stack->values[a_stack->amount - 1];
-	}
+	// if ((next_in_order(ref, a_stack) \
+	// 	|| a_stack->values[0] == a_stack->smallest) && nbs_und_med > 0)
+	// {
+	// 	ra(a_stack);
+	// 	i = a_stack->values[a_stack->amount - 1];
+	// }
 	// ft_printf(RED"\nSTACKS BEFORE RA ROTATION\n"RESET);
 	// ft_printf("i: %d\n", i);
 	// ft_printf("a stack:\n");
@@ -91,7 +111,8 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 		// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
 		// }
 		ra(a_stack);
-
+		// ft_printf(BOLD RED"fuck\n"RESET);
+		// read (0, s, 1);
 	}
 	// ft_printf(RED"\nSTACKS AFTER SPLITTING\n"RESET);
 	// ft_printf("a stack:\n");
@@ -138,7 +159,7 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit)
 		pa(a_stack, b_stack);
 		// ft_printf(BLUE"stack amount (%d) - limit (%d) = %d\n"RESET, a_stack->amount, limit, a_stack->amount - limit);
 		// ft_printf(BLUE"is in order : %s\n"RESET, !is_in_order(*a_stack, 1) ? "no" : "yes");
-		if (a_stack->amount - limit == 2 && !is_in_order(*a_stack, 1))
+		if (a_stack->amount - limit == 2 && !is_in_order(*a_stack, 1) && b_stack->amount == 0)
 		{
 			sa(a_stack);
 			// ra(a_stack);

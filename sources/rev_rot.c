@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 15:25:51 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/06 13:54:49 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 19:44:43 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,13 @@ void	rra(t_ps *a_stack)
 	// 	ft_printf("[%d]: %d\n", k, a_stack->values[k]);
 	// }
 	if (a_stack->print == TRUE)
+	{
 		ft_printf("rra\n");
+		// ft_printf("a stack:\n");
+		// for (int a = 0; a < a_stack->amount; a++) {
+		// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
+		// }
+	}
 }
 
 void	rrb(t_ps *b_stack)
@@ -41,7 +47,13 @@ void	rrb(t_ps *b_stack)
 	push_down(b_stack);
 	b_stack->values[0] = tmp;
 	if (b_stack->print == TRUE)
+	{
 		ft_printf("rrb\n");
+		// ft_printf("b stack:\n");
+		// for (int j = 0; j < b_stack->amount; j++) {
+		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+		// }
+	}
 }
 
 void	rrr(t_ps *a_stack, t_ps *b_stack)
@@ -49,5 +61,15 @@ void	rrr(t_ps *a_stack, t_ps *b_stack)
 	rra(a_stack);
 	rrb(b_stack);
 	if (a_stack->print == TRUE)
+	{
 		ft_printf("rrr\n");
+		// ft_printf("a stack:\n");
+		// for (int a = 0; a < a_stack->amount; a++) {
+		// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
+		// }
+		// ft_printf("b stack:\n");
+		// for (int j = 0; j < b_stack->amount; j++) {
+		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+		// }
+	}
 }
