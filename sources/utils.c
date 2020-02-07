@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:02 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 12:51:38 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 14:02:05 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int			median(t_ps *stack, int no_limit)
 	else if (limit == 2)
 		return (stack->values[1]);
 	if (!(arr = (int*)malloc(sizeof(int) * stack->amount)))
-		ft_exit("Error");
+		ft_exit("Median malloc error");
 	while (n < stack->amount && (n < limit || !no_limit))
 	{
 		arr[n] = stack->values[n];

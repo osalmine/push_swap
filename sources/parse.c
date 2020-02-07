@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/05 15:39:01 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 13:26:30 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void		ft_parse_nb(char **av, int ac, t_ps *stack)
 
 	i = 0;
 	if (!(stack->values = (int*)malloc(sizeof(int) * (ac - 1))))
-		ft_exit("Error");
+		ft_exit("Parse malloc error");
 	while (i < ac - 1)
 	{
 		if ((!ft_isdigit(av[i + 1][ft_strlen(av[i + 1]) - 1])
 			&& av[i + 1][ft_strlen(av[i + 1]) - 1] != 0)
 			|| (!ft_isdigit(av[i + 1][0]) && av[i + 1][0] != '-'))
-			ft_exit("Error");
+			ft_exit("Number parse error");
 		stack->values[i] = ft_atoi(av[i + 1]);
 		i++;
 		stack->amount++;
@@ -60,7 +60,7 @@ static void	str_val_alloc(char **tmp, t_ps *stack)
 	while (tmp[len])
 		len++;
 	if (!(stack->values = (int*)malloc(sizeof(int) * len)))
-		ft_exit("Error");
+		ft_exit("String malloc error");
 }
 
 void		ft_parse_str(char *str, t_ps *stack)
@@ -79,12 +79,12 @@ void		ft_parse_str(char *str, t_ps *stack)
 		{
 			if (!ft_isdigit(tmp[i][ft_nbs(ft_atoi(tmp[i]))]) &&
 				tmp[i][ft_nbs(ft_atoi(tmp[i]))])
-				ft_exit("Error");
+				ft_exit("Srting parse error");
 			stack->values[i] = ft_atoi(tmp[i]);
 			stack->amount++;
 		}
 		else
-			ft_exit("Error");
+			ft_exit("Error: Non-digits in string");
 		i++;
 	}
 	free_strsplit(&tmp);
@@ -101,7 +101,7 @@ t_ps		*parse(int ac, char **av)
 	if (ac >= 2)
 	{
 		if (!(stack = (t_ps*)malloc(sizeof(t_ps))))
-			ft_exit("Error");
+			ft_exit("Parse malloc error");
 		stack->amount = 0;
 		if (ac == 2 && ft_strlen(av[i]) > 1)
 			ft_parse_str(av[i], stack);
@@ -109,7 +109,7 @@ t_ps		*parse(int ac, char **av)
 			ft_parse_nb(av, ac, stack);
 	}
 	if (check_dups(stack))
-		ft_exit("Error");
+		ft_exit("Error: Duplicate numbers");
 	ft_small_big(stack);
 	return (stack);
 }

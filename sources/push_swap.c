@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 12:52:09 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/07 14:01:54 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,29 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	int j;
 	// int numb = a_stack->values[a_stack->amount - 1];
 	int limit;
+	// char s[1];
 
+	// ft_printf(GREEN"\n\nFT_SPLIT\n\n"RESET);
 	i = 0;
 	j = a_stack->amount - 1;
 	limit = 0;
 	// ft_printf("median is: %d, j is: %d\n", med, j);
-	while (j-- > 0)
+	while (j-- > 0 && !is_in_order(*a_stack, 1))
 	{
-		if (next_in_order(ref, a_stack) \
-			|| a_stack->values[0] == a_stack->smallest)
+		if ((next_in_order(ref, a_stack) \
+			|| a_stack->values[0] == a_stack->smallest) && !is_in_order(*a_stack, 1))
 		{
 			ra(a_stack);
 			i = a_stack->values[a_stack->amount - 1];
 			limit++;
+			// ft_printf(BOLD RED"AAAAAAAAAAA\n"RESET);
+			// read (0, s, 1);
 		}
 		else if (a_stack->values[0] <= med)
+		{
 			pb(a_stack, b_stack);
+			j++;
+		}
 		else if (j > 0)
 			ra(a_stack);
 		// ft_printf("\nj is : %d\n", j);
@@ -69,8 +76,15 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	// for (int j = 0; j < b_stack->amount; j++) {
 	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
 	// }
-	while (a_stack->values[a_stack->amount - 1] != i)
+	while (a_stack->values[a_stack->amount - 1] != i && i != 0)
+	{
+		// ft_printf("a stack, i: %d:\n", i);
+		// for (int i = 0; i < a_stack->amount; i++) {
+		// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
+		// }
 		ra(a_stack);
+
+	}
 	// ft_printf(RED"\nSTACKS AFTER SPLITTING\n"RESET);
 	// ft_printf("a stack:\n");
 	// for (int i = 0; i < a_stack->amount; i++) {
@@ -90,6 +104,8 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit)
 	// int num;
 	// char s[1];
 
+	// ft_printf(GREEN"\n\nFT_INSERT\n\n"RESET);
+	//
 	// ft_printf("a stack:\n");
 	// for (int a = 0; a < a_stack->amount; a++) {
 	// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
@@ -98,7 +114,7 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit)
 	// for (int j = 0; j < b_stack->amount; j++) {
 	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
 	// }
-	while (b_stack->amount != 0)
+	while (b_stack->amount != 0 && !is_in_order(*a_stack, 1))
 	{
 		ft_small_big(b_stack);
 		ft_small_big(a_stack);
@@ -113,7 +129,7 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit)
 		}
 		pa(a_stack, b_stack);
 		// ft_printf(BLUE"stack amount (%d) - limit (%d) = %d\n"RESET, a_stack->amount, limit, a_stack->amount - limit);
-		// ft_printf(BLUE"is in order : %d\n"RESET, !is_in_order(*a_stack, 1));
+		// ft_printf(BLUE"is in order : %s\n"RESET, !is_in_order(*a_stack, 1) ? "no" : "yes");
 		if (a_stack->amount - limit == 2 && !is_in_order(*a_stack, 1))
 		{
 			sa(a_stack);
@@ -187,15 +203,15 @@ void	solve(t_ps *a_stack, t_ps *b_stack)
 		// ft_printf(RED BOLD"\nSTACKS BEFORE RRA ROTATION\n"RESET);
 		// ft_printf("median : %d\n", med);
 		// ft_printf("a stack:\n");
-		// for (int i = 0; i < a_stack->amount; i++) {
-		// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
-		// }
-		// ft_printf("b stack:\n");
-		// for (int j = 0; j < b_stack->amount; j++) {
-		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
-		// }
+// 		for (int i = 0; i < a_stack->amount; i++) {
+// 			ft_printf("[%d]: %d\n", i, a_stack->values[i]);
+// 		}
+// 		ft_printf("b stack:\n");
+// 		for (int j = 0; j < b_stack->amount; j++) {
+// 			ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+// 		}
 //		read (0, s, 1);
-		// ft_printf(RED BOLD"\n\nNEW ROUND\n\n"RESET);
+// 		ft_printf(RED BOLD"\n\nNEW ROUND\n\n"RESET);
 	}
 	free_struct(ref);
 	// ft_printf("a stack:\n");
