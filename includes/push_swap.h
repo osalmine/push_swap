@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 18:46:12 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:00:37 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 
 /*
 **	Struct:
-**	Values holds all of the numbers in the stack
-**	Amount is the current amount of numbers in the a_stack
-**	Size is the allocated size of the a_stack
-**	Smallest is the smallest checked number in the stack
-**	Largest is the same as smallest but largest
-**	Print can be set to TRUE (=1) so the command executed is printed
+**	- Values holds all of the numbers in the stack
+**	- Amount is the current amount of numbers in the a_stack
+**	- Size is the allocated size of the a_stack
+**	- Smallest is the smallest checked number in the stack
+**	- Largest is the same as smallest but largest
+**	- Print can be set to TRUE (=1) so the command executed is printed.
+**	  If print is TRUE on checker, visualizer is triggered
 */
 
 typedef struct	s_ps
@@ -75,5 +76,9 @@ int				amount_in_order(t_ps *ref, t_ps *stack);
 void			next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack,
 				int med);
 void			fast_rotate(t_ps *stack, int pos);
+void			visual(t_ps *a_stack, t_ps *b_stack, char *command);
+void			clearScreen(void);
+int				aft_next_in_order(t_ps *ref, t_ps *stack);
+void			solve_small(t_ps *a_stack, t_ps *b_stack);
 
 #endif

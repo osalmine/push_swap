@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:13 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 13:23:21 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:23:39 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	check(t_ps *a_stack)
 		return ;
 	}
 	b_stack = b_init(a_stack);
+	if (a_stack->print == TRUE)
+		visual(a_stack, b_stack, str);
 	// ft_printf("a_stack:\n");
 	// for (int j = 0; j < a_stack->amount; j++) {
 	// 	ft_printf("%d: %d\n", j, a_stack->values[j]);
@@ -39,6 +41,8 @@ void	check(t_ps *a_stack)
 	{
 //		ft_printf("command: %s\n", str);
 		do_command(a_stack, b_stack, str);
+		if (a_stack->print == TRUE)
+			visual(a_stack, b_stack, str);
 		free(str);
 	}
 	if (size <= -1)
@@ -56,7 +60,8 @@ int		main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	a_stack = parse(argc, argv);
-	a_stack->print = FALSE;
+	if (a_stack->print != TRUE)
+		a_stack->print = FALSE;
 	check(a_stack);
 	free_struct(a_stack);
 	return (0);

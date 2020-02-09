@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:25:05 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 19:43:47 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:36:31 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,25 @@ int		next_in_order(t_ps *ref, t_ps *stack)
 	return (0);
 }
 
-int		nbs_under_med(t_ps *stack, int med)
+int		aft_next_in_order(t_ps *ref, t_ps *stack)
 {
-	int i;
-	int count;
+	int stack_print_copy;
 
-	i = 0;
-	count = 0;
-	while (i < stack->amount)
+	stack_print_copy = stack->print;
+	if (check_with_ref(ref, stack) && stack->amount > 1)
 	{
-		if (stack->values[i] <= med)
-			count++;
-		i++;
+		stack->print = FALSE;
+		sa(stack);
+		if (next_in_order(ref, stack))
+		{
+			sa(stack);
+			stack->print = stack_print_copy;
+			return (1);
+		}
+		sa(stack);
+		stack->print = stack_print_copy;
 	}
-	return (count);
+	return (0);
 }
 
 int		b_next_int_order(t_ps *ref, t_ps* a_stack, t_ps *b_stack)
@@ -93,8 +98,8 @@ int		b_next_int_order(t_ps *ref, t_ps* a_stack, t_ps *b_stack)
 	int stack_print_copy;
 
 	stack_print_copy = a_stack->print;
-	if (check_with_ref(ref, a_stack) && a_stack->amount > 1 \
-		&& b_stack->amount > 1)
+	if (check_with_ref(ref, a_stack) && a_stack->amount >= 1 \
+		&& b_stack->amount >= 1)
 	{
 		a_stack->print = FALSE;
 		b_stack->print = FALSE;

@@ -6,11 +6,11 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 09:02:48 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 13:24:17 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:00:44 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 t_ps	*b_init(t_ps *a_stack)
 {

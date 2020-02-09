@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 13:26:30 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 14:11:18 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void		ft_parse_nb(char **av, int ac, t_ps *stack)
 	int i;
 
 	i = 0;
+	if (ft_strequ(av[1], "-v"))
+		i++;
+	ft_printf("ac: %d\n", ac);
 	if (!(stack->values = (int*)malloc(sizeof(int) * (ac - 1))))
 		ft_exit("Parse malloc error");
 	while (i < ac - 1)
@@ -103,13 +106,18 @@ t_ps		*parse(int ac, char **av)
 		if (!(stack = (t_ps*)malloc(sizeof(t_ps))))
 			ft_exit("Parse malloc error");
 		stack->amount = 0;
-		if (ac == 2 && ft_strlen(av[i]) > 1)
+		if (ac >= 2 && ft_strequ(av[1], "-v"))
+		{
+			stack->print = TRUE;
+			i++;
+		}
+		if (ft_strlen(av[i]) > 1)
 			ft_parse_str(av[i], stack);
 		else
 			ft_parse_nb(av, ac, stack);
+		if (check_dups(stack))
+			ft_exit("Error: Duplicate numbers");
+		ft_small_big(stack);
 	}
-	if (check_dups(stack))
-		ft_exit("Error: Duplicate numbers");
-	ft_small_big(stack);
 	return (stack);
 }

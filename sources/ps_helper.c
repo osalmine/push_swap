@@ -6,11 +6,27 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 19:43:33 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:47:57 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int		nbs_under_med(t_ps *stack, int med)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (i < stack->amount)
+	{
+		if (stack->values[i] <= med)
+			count++;
+		i++;
+	}
+	return (count);
+}
 
 void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 {
@@ -45,7 +61,8 @@ void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 	i = (a_stack->amount - bottom) < top ? bottom : top;
 	// ft_printf("next nb under median is in index: %d\n", i);
 	fast_rotate(a_stack, i);
-	pb(a_stack, b_stack);
+	if (!is_in_order(*a_stack, 1))
+		pb(a_stack, b_stack);
 	// ft_printf("AFTER PB. Ordered: %d, (a_stack->amount (%d) - bottom (%d)) = %d < top (%d)\n", ordered, a_stack->amount, bottom, a_stack->amount - bottom, top);
 //	while (ordered-- && (a_stack->amount - bottom) < top)
 //		ra(a_stack);

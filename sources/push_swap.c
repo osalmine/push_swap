@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 19:45:12 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:04:08 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	while (j-- > 0 && !is_in_order(*a_stack, 1) && nbs_und_med > 0)
 	{
 		// ft_printf("\nNbs und med: %d\n", nbs_und_med);
+		// ft_printf("amount in order: %d\n", amount_in_order(ref, a_stack));
 		if ((next_in_order(ref, a_stack) \
 			|| a_stack->values[0] == a_stack->smallest) && !is_in_order(*a_stack, 1))
 		{
@@ -57,6 +58,9 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 			// ft_printf(BOLD RED"NOOOO\n"RESET);
 			// read (0, s, 1);
 		}
+		else if (!is_in_order(*a_stack, 1) && aft_next_in_order(ref, a_stack) &&
+				a_stack->amount - amount_in_order(ref, a_stack) <= 2)
+			sa(a_stack);
 		else
 		{
 			next_nb_under_med(ref, a_stack, b_stack, med);
@@ -73,12 +77,9 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 		// 	ra(a_stack);
 		// if (find_in_stack(a_stack, a_stack->smallest))
 		// ft_printf("\nj is : %d\n", j);
-		// ft_printf("a stack:\n");
+		// ft_printf("\na stack:\n");
 		// for (int k = 0; k < a_stack->amount; k++) {
-		// 	if (a_stack->values[k] == numb)
-		// 		ft_printf(RED"[%d]: %d\n"RESET, k, a_stack->values[k]);
-		// 	else
-		// 		ft_printf("[%d]: %d\n", k, a_stack->values[k]);
+		// 	ft_printf("[%d]: %d\n", k, a_stack->values[k]);
 		// }
 		// ft_printf("b stack:\n");
 		// for (int j = 0; j < b_stack->amount; j++) {
@@ -134,7 +135,7 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit)
 	// char s[1];
 
 	// ft_printf(GREEN"\n\nFT_INSERT\n\n"RESET);
-	//
+
 	// ft_printf("a stack:\n");
 	// for (int a = 0; a < a_stack->amount; a++) {
 	// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
@@ -189,32 +190,6 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit)
 		// for (int l = 0; l < b_stack->amount; l++) {
 		// 	ft_printf("[%d]: %d\n", l, b_stack->values[l]);
 		// }
-	}
-}
-
-void	solve_3(t_ps *a_stack)
-{
-	int i;
-
-	if (a_stack->amount <= 1)
-		return ;
-	i = a_stack->size - 1;
-	if (is_in_order(*a_stack, 1))
-		return ;
-	if (a_stack->amount == 2)
-		sa(a_stack);
-	ft_small_big(a_stack);
-	while (!is_in_order(*a_stack, 1))
-	{
-		if (a_stack->largest == a_stack->values[i])
-			sa(a_stack);
-		else if (a_stack->smallest == a_stack->values[0])
-		{
-			sa(a_stack);
-			ra(a_stack);
-		}
-		else
-			ra(a_stack);
 	}
 }
 
@@ -277,10 +252,10 @@ int		main(int argc, char **argv)
 		return (0);
 	b_stack = b_init(a_stack);
 	// ft_printf("stack size (%d) / 2 = %d\n", a_stack->size, a_stack->size / 2);
-	if (a_stack->size > 3)
+	if (a_stack->size > 5)
 		solve(a_stack, b_stack);
 	else
-		solve_3(a_stack);
+		solve_small(a_stack, b_stack);
 	free_struct(a_stack);
 	free_struct(b_stack);
 	return (0);

@@ -6,11 +6,11 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 09:01:19 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 19:45:02 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 13:43:31 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	push_up(t_ps *stack)
 {
