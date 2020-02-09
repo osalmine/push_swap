@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 13:43:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/09 16:12:59 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/09 18:34:42 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	visual(t_ps *a_stack, t_ps *b_stack, char *command)
 
 	a = 0;
 	b = 0;
-	system("sleep 2");
+	system("sleep 0.05");
 	clearScreen();
 	ft_printf("\n%s:\n\na_stack:", command);
 	while (a < a_stack->amount)
 	{
 		val = ft_abs(a_stack->values[a]);
-		ft_printf("\n[%d]: ", a);
+		ft_printf("\n[%d]:\t", a);
 		while (val--)
 			ft_printf(BLUE"-"RESET);
 		a++;
