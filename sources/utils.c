@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:02 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 12:57:24 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 13:58:11 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int			median(t_ps *stack, int no_limit)
 
 	n = 0;
 	limit = 0;
-	// ft_printf("stack from wich median is taken:\n");
+	// ft_printf("\nstack from wich median is taken:\n");
 	// for (int l = 0; l < stack->amount; l++) {
 	// 	ft_printf("[%d]: %d\n", l, stack->values[l]);
 	// }

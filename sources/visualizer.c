@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 13:43:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 13:01:43 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:29:32 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	visual(t_ps *a_stack, t_ps *b_stack, char *command)
 	while (a < a_stack->amount)
 	{
 		val = ft_abs(a_stack->values[a]);
+	//	ft_printf("Visualizer val: %d\n", val);
 		ft_printf("\n[%d]:\t", a);
 		while (val--)
 			ft_printf(BLUE"-"RESET);
@@ -35,6 +36,7 @@ void	visual(t_ps *a_stack, t_ps *b_stack, char *command)
 	while (b < b_stack->amount)
 	{
 		val = ft_abs(b_stack->values[b]);
+		// ft_printf("Visualizer val: %d\n", val);
 		ft_printf("[%d]:\t", b);
 		while (val--)
 			ft_printf(BLUE"-"RESET);

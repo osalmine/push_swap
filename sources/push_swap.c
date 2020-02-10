@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 13:02:59 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:30:09 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 {
-	// int num;
-	// int i;
 	int j;
 	// int numb = a_stack->values[a_stack->amount - 1];
 	int limit;
@@ -23,13 +21,7 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	// char s[1];
 
 	// ft_printf(GREEN"\n\nFT_SPLIT\n\n"RESET);
-	// i = 0;
 	j = a_stack->amount - 1;
-	limit = 0;
-	// ft_printf("BEFORE COUNT a stack:\n");
-	// for (int a = 0; a < a_stack->amount; a++) {
-	// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
-	// }
 	nbs_und_med = nbs_under_med(a_stack, med) - amount_in_order(ref, a_stack);
 	// ft_printf("\nMed : %d\n", med);
 	// ft_printf("nbs_under_med: %d, amount_in_order: %d\n", nbs_under_med(a_stack, med), amount_in_order(ref, a_stack));
@@ -37,29 +29,33 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	// ft_printf("median is: %d, j (stack amount - 1) is: %d\n", med, j);
 	while (j-- > 0 && !is_in_order(*a_stack, 1) && nbs_und_med > 0)
 	{
-		// ft_printf("\nNbs und med: %d\n", nbs_und_med);
-		// ft_printf("amount in order: %d\n", amount_in_order(ref, a_stack));
 		ft_small_big(a_stack);
+		// ft_printf("j (stack amount) : %d, nb_und_med : %d. If either hits 0, while loop stops\n");
+		// ft_printf("a_stack->smallest: %d\n", a_stack->smallest);
+		// ft_printf("current top number in a stack: %d\n", a_stack->values[0]);
+		// ft_printf("a stack:\n");
+		// for (int i = 0; i < a_stack->amount; i++) {
+		// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
+		// }
+		// ft_printf("b stack:\n");
+		// for (int j = 0; j < b_stack->amount; j++) {
+		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+		// }
 		if ((next_in_order(ref, a_stack) \
 			|| a_stack->values[0] == a_stack->smallest)
-			&& !is_in_order(*a_stack, 1) && !(a_stack->amount - find_in_stack(a_stack, a_stack->sorted_bot) < a_stack->amount / 2))
+			&& !is_in_order(*a_stack, 1))
 		{
 			ra(a_stack);
 			a_stack->sorted_bot = a_stack->values[a_stack->amount - 1];
-			limit++;
 			nbs_und_med--;
 			// ft_printf(BOLD RED"YEET\n"RESET);
 			// read (0, s, 1);
 		}
-		// else if (!is_in_order(*a_stack, 1))
-		// 	while (a_stack->values[a_stack->amount - 1] != i && i != 0)
-		// 		rra(a_stack);
 		else if (b_next_int_order(ref, a_stack, b_stack))
 		{
 			pa(a_stack, b_stack);
 			ra(a_stack);
 			a_stack->sorted_bot = a_stack->values[a_stack->amount - 1];
-			limit++;
 			// ft_printf(BOLD RED"NOOOO\n"RESET);
 			// read (0, s, 1);
 		}
@@ -72,31 +68,7 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 			nbs_und_med--;
 			j++;
 		}
-		// else if (a_stack->values[0] <= med)
-		// {
-		// 	pb(a_stack, b_stack);
-		// 	j++;
-		// 	nbs_und_med--;
-		// }
-		// else if (j > 0)
-		// 	ra(a_stack);
-		// if (find_in_stack(a_stack, a_stack->smallest))
-		// ft_printf("\nj is : %d\n", j);
-		// ft_printf("\na stack:\n");
-		// for (int k = 0; k < a_stack->amount; k++) {
-		// 	ft_printf("[%d]: %d\n", k, a_stack->values[k]);
-		// }
-		// ft_printf("b stack:\n");
-		// for (int j = 0; j < b_stack->amount; j++) {
-		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
-		// }
 	}
-	// if ((next_in_order(ref, a_stack) \
-	// 	|| a_stack->values[0] == a_stack->smallest) && nbs_und_med > 0)
-	// {
-	// 	ra(a_stack);
-	// 	i = a_stack->values[a_stack->amount - 1];
-	// }
 	// ft_printf(RED"\nSTACKS BEFORE RA ROTATION\n"RESET);
 	// ft_printf("largest sorted nb: %d\n", a_stack->sorted_bot);
 	// ft_printf("a_stack->amount : %d\n", a_stack->amount);
@@ -119,9 +91,13 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	else
 		while (a_stack->values[a_stack->amount - 1] != a_stack->sorted_bot && a_stack->sorted_bot != 0)
 		{
-			// ft_printf("a stack, i: %d:\n", i);
+			// ft_printf("a stack's sorted_bot: %d:\n", a_stack->sorted_bot);
 			// for (int i = 0; i < a_stack->amount; i++) {
 			// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
+			// }
+			// ft_printf("b stack:\n");
+			// for (int b = 0; b < a_stack->amount; b++) {
+			// 	ft_printf("[%d]: %d\n", b, b_stack->values[b]);
 			// }
 			ra(a_stack);
 			// ft_printf(BOLD RED"fuck\n"RESET);
@@ -136,14 +112,13 @@ int		ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	// for (int j = 0; j < b_stack->amount; j++) {
 	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
 	// }
+	limit = amount_in_order(ref, a_stack);
 	// ft_printf("Returned limit from split: %d\n", limit);
 	return (limit);
 }
 
 void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit)
 {
-	// int i;
-	// int num;
 	// char s[1];
 
 	// ft_printf(GREEN"\n\nFT_INSERT\n\n"RESET);
@@ -226,7 +201,7 @@ void	solve(t_ps *a_stack, t_ps *b_stack)
 	// }
 	ref = ref_stack(a_stack);
 	order = b_init(a_stack);
-	a_stack->sorted_bot = 0;
+	a_stack->sorted_bot = a_stack->smallest;
 	while (!is_in_order(*a_stack, 1))
 	{
 		limit = ft_split(a_stack, b_stack, med, ref);
@@ -244,7 +219,8 @@ void	solve(t_ps *a_stack, t_ps *b_stack)
 		// read (0, s, 1);
 		// ft_printf(RED BOLD"\n\nNEW ROUND\n\n"RESET);
 	}
-	free_struct(ref);
+	// free_struct(ref);
+	// ft_printf(BG_WHITE BLACK"FINAL STACKS:"RESET);
 	// ft_printf("a stack:\n");
 	// for (int i = 0; i < a_stack->amount; i++) {
 	// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
@@ -267,6 +243,7 @@ int		main(int argc, char **argv)
 	if (is_in_order(*a_stack, 1))
 		return (0);
 	b_stack = b_init(a_stack);
+	ft_small_big(a_stack);
 	// ft_printf("stack size (%d) / 2 = %d\n", a_stack->size, a_stack->size / 2);
 	if (a_stack->size > 5)
 		solve(a_stack, b_stack);

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:49:48 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/07 17:12:24 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:16:19 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	do_command(t_ps *a_stack, t_ps *b_stack, char *str)
 		rrb(b_stack);
 	else if (ft_strequ("rrr", str))
 		rrr(a_stack, b_stack);
-	else
-		ft_exit("Command error");
+	// else                           // COMMENT BACK
+	// 	ft_exit("Command error");
 	// ft_printf("a_stack:\n");
 	// for (int j = 0; j < a_stack->amount; j++) {
 	// 	ft_printf("%d: %d\n", j, a_stack->values[j]);

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 12:25:51 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 13:55:37 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,14 @@ void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 	i = (a_stack->amount - bottom) < top ? bottom : top;
 	// ft_printf("next nb under median is in index: %d\n", i);
 	fast_rotate(a_stack, i);
-	if (!is_in_order(*a_stack, 1))
+	if ((next_in_order(ref, a_stack) \
+		|| a_stack->values[0] == a_stack->smallest)
+		&& !is_in_order(*a_stack, 1))
+	{
+		ra(a_stack);
+		a_stack->sorted_bot = a_stack->values[a_stack->amount - 1];
+	}
+	else if (!is_in_order(*a_stack, 1))
 		pb(a_stack, b_stack);
 	// ft_printf("AFTER PB. Ordered: %d, (a_stack->amount (%d) - bottom (%d)) = %d < top (%d)\n", ordered, a_stack->amount, bottom, a_stack->amount - bottom, top);
 //	while (ordered-- && (a_stack->amount - bottom) < top)
