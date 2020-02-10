@@ -6,13 +6,13 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/09 14:11:18 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 09:48:04 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int		check_dups(t_ps *stack)
+static int	check_dups(t_ps *stack)
 {
 	int i;
 	int j;
@@ -39,12 +39,12 @@ void		ft_parse_nb(char **av, int ac, t_ps *stack)
 	i = 0;
 	if (ft_strequ(av[1], "-v"))
 		i++;
-	ft_printf("ac: %d\n", ac);
 	if (!(stack->values = (int*)malloc(sizeof(int) * (ac - 1))))
 		ft_exit("Parse malloc error");
 	while (i < ac - 1)
 	{
-		if ((!ft_isdigit(av[i + 1][ft_strlen(av[i + 1]) - 1])
+		if (ft_atoi(av[i + 1]) > 2147483647 || ft_atoi(av[i + 1]) < -2147483648
+			|| (!ft_isdigit(av[i + 1][ft_strlen(av[i + 1]) - 1])
 			&& av[i + 1][ft_strlen(av[i + 1]) - 1] != 0)
 			|| (!ft_isdigit(av[i + 1][0]) && av[i + 1][0] != '-'))
 			ft_exit("Number parse error");
@@ -80,9 +80,10 @@ void		ft_parse_str(char *str, t_ps *stack)
 	{
 		if (ft_isdigit(tmp[i][0]) || tmp[i][0] == '-')
 		{
-			if (!ft_isdigit(tmp[i][ft_nbs(ft_atoi(tmp[i]))]) &&
+			if ((!ft_isdigit(tmp[i][ft_nbs(ft_atoi(tmp[i]))]) &&
 				tmp[i][ft_nbs(ft_atoi(tmp[i]))])
-				ft_exit("Srting parse error");
+			|| ft_atoi(tmp[i]) > 2147483647 || ft_atoi(tmp[i]) < -2147483648)
+				ft_exit("String parse error");
 			stack->values[i] = ft_atoi(tmp[i]);
 			stack->amount++;
 		}
