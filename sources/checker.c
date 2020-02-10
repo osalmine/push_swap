@@ -25,16 +25,16 @@ void	check(t_ps *a_stack)
 		return ;
 	}
 	b_stack = b_init(a_stack);
-	ft_printf("a_stack bef visual:\n");
-	for (int j = 0; j < a_stack->amount; j++) {
-		ft_printf("%d: %d\n", j, a_stack->values[j]);
-	}
-	ft_printf("a_stack amount: %d, size: %d\n", a_stack->amount, a_stack->size);
-	ft_printf("b_stack:\n");
-	for (int k = 0; k < b_stack->amount; k++) {
-		ft_printf("%d: %d\n", k, b_stack->values[k]);
-	}
-	ft_printf("b_stack amount: %d, size: %d\n", b_stack->amount, b_stack->size);
+	// ft_printf("a_stack bef visual:\n");
+	// for (int j = 0; j < a_stack->amount; j++) {
+	// 	ft_printf("%d: %d\n", j, a_stack->values[j]);
+	// }
+	// ft_printf("a_stack amount: %d, size: %d\n", a_stack->amount, a_stack->size);
+	// ft_printf("b_stack:\n");
+	// for (int k = 0; k < b_stack->amount; k++) {
+	// 	ft_printf("%d: %d\n", k, b_stack->values[k]);
+	// }
+	// ft_printf("b_stack amount: %d, size: %d\n", b_stack->amount, b_stack->size);
 	if (a_stack->print == TRUE)
 		visual(a_stack, b_stack, str);
 	while ((size = get_next_line(0, &str)) > 0)

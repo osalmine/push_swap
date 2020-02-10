@@ -35,13 +35,15 @@ static int	check_dups(t_ps *stack)
 void		ft_parse_nb(char **av, int ac, t_ps *stack)
 {
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	if (ft_strequ(av[1], "-v"))
 		i++;
-	if (!(stack->values = (int*)malloc(sizeof(int) * (ac - 1))))
+	if (!(stack->values = (int*)malloc(sizeof(int) * (ac - (i + 1)))))
 		ft_exit("Parse malloc error");
-	if (!(stack->sorted = (int*)malloc(sizeof(int) * (ac - 1))))
+	if (!(stack->sorted = (int*)malloc(sizeof(int) * (ac - (i + 1)))))
 		ft_exit("Parse malloc error");
 	while (i < ac - 1)
 	{
@@ -50,8 +52,9 @@ void		ft_parse_nb(char **av, int ac, t_ps *stack)
 			&& av[i + 1][ft_strlen(av[i + 1]) - 1] != 0)
 			|| (!ft_isdigit(av[i + 1][0]) && av[i + 1][0] != '-'))
 			ft_exit("Number parse error");
-		stack->values[i] = ft_atoi(av[i + 1]);
+		stack->values[j] = ft_atoi(av[i + 1]);
 		i++;
+		j++;
 		stack->amount++;
 	}
 	stack->size = stack->amount;

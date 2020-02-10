@@ -213,15 +213,15 @@ void	solve(t_ps *a_stack, t_ps *b_stack)
 		// ft_printf(RED BOLD"\n\nNEW ROUND\n\n"RESET);
 	}
 	free_struct(ref);
-	ft_printf(BG_WHITE BLACK"FINAL STACKS:\n"RESET);
-	ft_printf("a stack:\n");
-	for (int i = 0; i < a_stack->amount; i++) {
-		ft_printf("[%d]: %d\n", i, a_stack->values[i]);
-	}
-	ft_printf("b stack:\n");
-	for (int j = 0; j < b_stack->amount; j++) {
-		ft_printf("[%d]: %d\n", j, b_stack->values[j]);
-	}
+//	ft_printf(BG_WHITE BLACK"FINAL STACKS:\n"RESET);
+//	ft_printf("a stack:\n");
+//	for (int i = 0; i < a_stack->amount; i++) {
+//		ft_printf("[%d]: %d\n", i, a_stack->values[i]);
+//	}
+//	ft_printf("b stack:\n");
+//	for (int j = 0; j < b_stack->amount; j++) {
+//		ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+//	}
 }
 
 int		main(int argc, char **argv)
