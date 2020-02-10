@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/09 16:47:57 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 12:25:51 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ int		nbs_under_med(t_ps *stack, int med)
 		i++;
 	}
 	return (count);
+}
+
+void	in_order_stack(t_ps *stack, int nb)
+{
+	if (find_in_stack(stack, nb) != -1)
+		return ;
+	push_down(stack);
+	stack->values[0] = nb;
+	stack->amount++;
 }
 
 void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)

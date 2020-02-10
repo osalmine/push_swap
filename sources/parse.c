@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 09:48:04 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 10:10:08 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_ps		*parse(int ac, char **av)
 			stack->print = TRUE;
 			i++;
 		}
-		if (ft_strlen(av[i]) > 1)
+		if ((long long)ft_strlen(av[i]) > ft_atoi(av[i]))
 			ft_parse_str(av[i], stack);
 		else
 			ft_parse_nb(av, ac, stack);

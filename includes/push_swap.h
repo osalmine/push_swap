@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/09 16:00:37 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 12:38:08 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_ps
 	int smallest;
 	int largest;
 	int print;
+	int sorted_bot;
 }				t_ps;
 
 t_ps			*parse(int ac, char **av);

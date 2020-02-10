@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 09:02:48 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/09 16:00:44 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 12:41:26 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_ps	*b_init(t_ps *a_stack)
 	b_stack->amount = 0;
 	b_stack->size = a_stack->size;
 	b_stack->print = a_stack->print;
+	b_stack->sorted_bot = 0;
 	return (b_stack);
 }
