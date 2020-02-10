@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:13 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/09 16:23:39 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 18:39:39 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	check(t_ps *a_stack)
 		return ;
 	}
 	b_stack = b_init(a_stack);
+	ft_printf("a_stack bef visual:\n");
+	for (int j = 0; j < a_stack->amount; j++) {
+		ft_printf("%d: %d\n", j, a_stack->values[j]);
+	}
+	ft_printf("a_stack amount: %d, size: %d\n", a_stack->amount, a_stack->size);
+	ft_printf("b_stack:\n");
+	for (int k = 0; k < b_stack->amount; k++) {
+		ft_printf("%d: %d\n", k, b_stack->values[k]);
+	}
+	ft_printf("b_stack amount: %d, size: %d\n", b_stack->amount, b_stack->size);
 	if (a_stack->print == TRUE)
 		visual(a_stack, b_stack, str);
-	// ft_printf("a_stack:\n");
-	// for (int j = 0; j < a_stack->amount; j++) {
-	// 	ft_printf("%d: %d\n", j, a_stack->values[j]);
-	// }
-	// ft_printf("a_stack amount: %d, size: %d\n", a_stack->amount, a_stack->size);
-	// ft_printf("b_stack:\n");
-	// for (int k = 0; k < b_stack->amount; k++) {
-	// 	ft_printf("%d: %d\n", k, b_stack->values[k]);
-	// }
-	// ft_printf("b_stack amount: %d, size: %d\n", b_stack->amount, b_stack->size);
 	while ((size = get_next_line(0, &str)) > 0)
 	{
 //		ft_printf("command: %s\n", str);

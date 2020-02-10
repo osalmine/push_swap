@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 13:56:12 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:24:39 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 **	- Largest is the same as smallest but largest
 **	- Print can be set to TRUE (=1) so the command executed is printed.
 **	  If print is TRUE on checker, visualizer is triggered
+**	- Sorted array has the list of sorted numbers in it
+**	- Sorted amount is the nuber of sorted numbers
 */
 
 typedef struct	s_ps
@@ -37,7 +39,10 @@ typedef struct	s_ps
 	int smallest;
 	int largest;
 	int print;
-	int sorted_bot;
+
+	int *sorted;
+	int sorted_amount;
+	int sorted_max;
 }				t_ps;
 
 t_ps			*parse(int ac, char **av);
@@ -66,7 +71,7 @@ void			ft_small_big(t_ps *stack);
 void			solve(t_ps *a_stack, t_ps *b_stack);
 void			solve_3(t_ps *a_stack);
 int				ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref);
-int				find_in_stack(t_ps *stack, int value);
+int				find_in_stack(int *arr, int amount, int value);
 void			ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit);
 t_ps			*ref_stack(t_ps *a_stack);
 int				check_with_ref(t_ps *ref, t_ps *stack);
@@ -81,5 +86,6 @@ void			visual(t_ps *a_stack, t_ps *b_stack, char *command);
 void			clearScreen(void);
 int				aft_next_in_order(t_ps *ref, t_ps *stack);
 void			solve_small(t_ps *a_stack, t_ps *b_stack);
+void			add_sorted(t_ps *stack, int nb);
 
 #endif

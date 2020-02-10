@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 10:10:08 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:40:23 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void		ft_parse_nb(char **av, int ac, t_ps *stack)
 		i++;
 	if (!(stack->values = (int*)malloc(sizeof(int) * (ac - 1))))
 		ft_exit("Parse malloc error");
+	if (!(stack->sorted = (int*)malloc(sizeof(int) * (ac - 1))))
+		ft_exit("Parse malloc error");
 	while (i < ac - 1)
 	{
 		if (ft_atoi(av[i + 1]) > 2147483647 || ft_atoi(av[i + 1]) < -2147483648
@@ -63,6 +65,8 @@ static void	str_val_alloc(char **tmp, t_ps *stack)
 	while (tmp[len])
 		len++;
 	if (!(stack->values = (int*)malloc(sizeof(int) * len)))
+		ft_exit("String malloc error");
+	if (!(stack->sorted = (int*)malloc(sizeof(int) * len)))
 		ft_exit("String malloc error");
 }
 
@@ -107,6 +111,7 @@ t_ps		*parse(int ac, char **av)
 		if (!(stack = (t_ps*)malloc(sizeof(t_ps))))
 			ft_exit("Parse malloc error");
 		stack->amount = 0;
+		stack->sorted_amount = 0;
 		if (ac >= 2 && ft_strequ(av[1], "-v"))
 		{
 			stack->print = TRUE;

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 15:02:52 by osalmine          #+#    #+#             */
-/*   Updated: 2020/01/27 16:58:45 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:09:27 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	free_struct(t_ps *stack)
 {
 	free(stack->values);
+	free(stack->sorted);
 	free(stack);
 }
 

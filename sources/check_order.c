@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 10:25:05 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/09 16:36:31 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:20:09 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		check_with_ref(t_ps *ref, t_ps *stack)
 	int i;
 
 	amount = stack->amount - 1;
-	i = find_in_stack(ref, stack->values[amount]);
+	i = find_in_stack(ref->values, ref->amount, stack->values[amount]);
 	while (i)
 		if (ref->values[i--] != stack->values[amount--])
 			return (0);
@@ -35,7 +35,7 @@ int		amount_in_order(t_ps *ref, t_ps *stack)
 	amount = stack->amount - 1;
 	// ft_printf("amount in order stack amount: %d, ref stack am: %d\n", stack->amount, ref->amount);
 	// ft_printf("value in the bottom (%d) of the stack : %d\n", amount, stack->values[amount]);
-	i = find_in_stack(ref, stack->values[amount]);
+	i = find_in_stack(ref->values, ref->amount, stack->values[amount]);
 	// ft_printf("i: %d\n", i);
 	while (i >= 0)
 	{

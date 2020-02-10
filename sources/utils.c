@@ -6,41 +6,21 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:02 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 13:58:11 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:52:03 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void		ft_small_big(t_ps *stack)
-{
-	int smallest;
-	int largest;
-	int amount;
-
-	amount = stack->amount - 1;
-	smallest = stack->values[amount];
-	largest = stack->values[amount];
-	while (amount-- > 0)
-	{
-		if (stack->values[amount] < smallest)
-			smallest = stack->values[amount];
-		if (stack->values[amount] > largest)
-			largest = stack->values[amount];
-	}
-	stack->smallest = smallest;
-	stack->largest = largest;
-}
-
-int			find_in_stack(t_ps *stack, int value)
+int			find_in_stack(int *arr, int amount, int value)
 {
 	int i;
 
 	i = 0;
-	while (i < stack->amount)
+	while (i < amount)
 	{
 //		ft_printf("stack val at i (%d) is %d and value is %d\n", i, stack->values[i], value);
-		if (stack->values[i] == value)
+		if (arr[i] == value)
 			return (i);
 		i++;
 	}
@@ -75,6 +55,28 @@ static void	quicksort(int *data, int n)
 	data[0] = t;
 	quicksort(data, i - 1);
 	quicksort(data + i, n - i);
+}
+
+void	add_sorted(t_ps *stack, int nb)
+{
+	int i;
+
+	i = 0;
+	while (i < stack->sorted_amount)
+	{
+		if (stack->sorted[i] == nb)
+			return ;
+		i++;
+	}
+	i = stack->sorted_amount;
+	while (i > 0 && stack->sorted_amount > 0)
+	{
+		stack->sorted[i] = stack->sorted[i - 1];
+		i--;
+	}
+	stack->sorted[0] = nb;
+	stack->sorted_amount++;
+	quicksort(stack->sorted, stack->sorted_amount);
 }
 
 t_ps		*ref_stack(t_ps *a_stack)
