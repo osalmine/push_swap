@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 13:43:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 18:35:35 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/11 11:07:46 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,20 @@ void	visual(t_ps *a_stack, t_ps *b_stack, char *command)
 //	for (int j = 0; j < b_stack->amount; j++) {
 //		ft_printf("[%d]: %d\n", j, b_stack->values[j]);
 //	}
-	ft_printf("\n%s:\na_stack:", command);
+	ft_printf(RESET"\n%s:\na_stack:", command);
 	while (a < a_stack->amount)
 	{
 		val = ft_abs(a_stack->values[a]);
-	//	ft_printf("Visualizer val: %d\n", val);
-		ft_printf("\n[%d]:\t", a);
-//		ft_printf(" %d", val);
+		ft_printf(RESET"\n[%d]:\t"BLUE, a);
 		while (val--)
 			ft_putstr("-");
 		a++;
 	}
-	ft_putstr("\n\nb_stack:\n");
+	ft_putstr(RESET"\n\nb_stack:\n");
 	while (b < b_stack->amount)
 	{
 		val = ft_abs(b_stack->values[b]);
-		// ft_printf("Visualizer val: %d\n", val);
-		ft_printf("[%d]:\t", b);
-		// ft_printf(" %d", val);
+		ft_printf(RESET"[%d]:\t"BLUE, b);
 		while (val--)
 			ft_putstr("-");
 		b++;

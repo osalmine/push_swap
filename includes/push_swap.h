@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 15:24:39 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/11 11:55:07 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void			free_struct(t_ps *stack);
 void			ft_small_big(t_ps *stack);
 void			solve(t_ps *a_stack, t_ps *b_stack);
 void			solve_3(t_ps *a_stack);
-int				ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref);
+void			ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref);
 int				find_in_stack(int *arr, int amount, int value);
-void			ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref, int limit);
+void			ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref);
 t_ps			*ref_stack(t_ps *a_stack);
 int				check_with_ref(t_ps *ref, t_ps *stack);
 int				next_in_order(t_ps *ref, t_ps *stack);
@@ -82,6 +82,7 @@ int				amount_in_order(t_ps *ref, t_ps *stack);
 void			next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack,
 				int med);
 void			fast_rotate(t_ps *stack, int pos);
+void			b_fast_rot(t_ps *a_stack, t_ps *b_stack);
 void			visual(t_ps *a_stack, t_ps *b_stack, char *command);
 void			clearScreen(void);
 int				aft_next_in_order(t_ps *ref, t_ps *stack);

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:02 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 15:52:03 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/11 11:41:52 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	add_sorted(t_ps *stack, int nb)
 	stack->sorted[0] = nb;
 	stack->sorted_amount++;
 	quicksort(stack->sorted, stack->sorted_amount);
+	ft_small_big(stack);
 }
 
 t_ps		*ref_stack(t_ps *a_stack)

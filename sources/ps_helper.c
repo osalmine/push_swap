@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 18:25:02 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/11 11:55:29 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,41 @@ void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 	}
 	else if (!is_in_order(*a_stack, 1))
 		pb(a_stack, b_stack);
+}
+
+void	b_fast_rot(t_ps *a_stack, t_ps *b_stack)
+{
+	int top;
+	int bottom;
+	int i;
+
+	top = 0;
+	bottom = b_stack->amount - 1;
+	while (top <= b_stack->amount / 2)
+	{
+		// ft_printf("CURRENT TOP (%d) VALUE INSPECTED: %d\n", top, a_stack->values[top]);
+		if (b_stack->values[top] == b_stack->smallest || b_stack->values[top] == b_stack->largest)
+		{
+			// ft_printf(CYAN"Top found top most number under median : %d in index %d\n"RESET, a_stack->values[top], top);
+			break ;
+		}
+		top++;
+	}
+	while (bottom > b_stack->amount / 2)
+	{
+		// ft_printf("CURRENT BOT (%d) VALUE INSPECTED: %d\n", bottom, a_stack->values[bottom]);
+		if (b_stack->values[bottom] == b_stack->smallest || b_stack->values[bottom] == b_stack->largest)
+		{
+			// ft_printf(CYAN"Bottom found bottom most number under median : %d in index %d\n"RESET, a_stack->values[bottom], bottom);
+			break ;
+		}
+		bottom--;
+	}
+	if (bottom == 0)
+		return ;
+	i = (b_stack->amount - bottom) < top ? bottom : top;
+	fast_rotate(b_stack, i);
+	pa(a_stack, b_stack);
 }
 
 void	fast_rotate(t_ps *stack, int pos)
