@@ -26,7 +26,7 @@
 **	- Smallest is the smallest checked number in the stack
 **	- Largest is the same as smallest but largest
 **	- Print can be set to TRUE (=1) so the command executed is printed.
-**	  If print is TRUE on checker, visualizer is triggered
+**	- If visual is TRUE, visual mode for checker is triggered
 **	- Sorted array has the list of sorted numbers in it
 **	- Sorted amount is the nuber of sorted numbers
 */
@@ -39,6 +39,8 @@ typedef struct	s_ps
 	int smallest;
 	int largest;
 	int print;
+
+	int visual;
 
 	int *sorted;
 	int sorted_amount;

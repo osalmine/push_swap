@@ -100,11 +100,15 @@ void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 		|| a_stack->values[0] == a_stack->smallest)
 		&& !is_in_order(*a_stack, 1))
 	{
+		// ft_printf("printable: %d, %d next nb und med ra\n", a_stack->print, b_stack->print);
 		ra(a_stack);
 		add_sorted(a_stack, a_stack->values[a_stack->amount - 1]);
 	}
 	else if (!is_in_order(*a_stack, 1))
+	{
+		// ft_printf("printable: %d, %d next nb und med pb\n", a_stack->print, b_stack->print);
 		pb(a_stack, b_stack);
+	}
 }
 
 void	b_fast_rot(t_ps *a_stack, t_ps *b_stack)
@@ -115,22 +119,31 @@ void	b_fast_rot(t_ps *a_stack, t_ps *b_stack)
 
 	top = 0;
 	bottom = b_stack->amount - 1;
+	// ft_printf("b stack smallest : %d, largest : %d\n", b_stack->smallest, b_stack->largest);
+	// ft_printf("a stack:\n");
+	// for (int a = 0; a < a_stack->amount; a++) {
+	// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
+	// }
+	// ft_printf("b stack:\n");
+	// for (int j = 0; j < b_stack->amount; j++) {
+	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+	// }
 	while (top <= b_stack->amount / 2)
 	{
-		// ft_printf("CURRENT TOP (%d) VALUE INSPECTED: %d\n", top, a_stack->values[top]);
+		// ft_printf("CURRENT TOP (%d) VALUE INSPECTED: %d\n", top, b_stack->values[top]);
 		if (b_stack->values[top] == b_stack->smallest || b_stack->values[top] == b_stack->largest)
 		{
-			// ft_printf(CYAN"Top found top most number under median : %d in index %d\n"RESET, a_stack->values[top], top);
+			// ft_printf(CYAN"Top found top most smallest or largest number : %d in index %d\n"RESET, b_stack->values[top], top);
 			break ;
 		}
 		top++;
 	}
 	while (bottom > b_stack->amount / 2)
 	{
-		// ft_printf("CURRENT BOT (%d) VALUE INSPECTED: %d\n", bottom, a_stack->values[bottom]);
+		// ft_printf("CURRENT BOT (%d) VALUE INSPECTED: %d\n", bottom, b_stack->values[bottom]);
 		if (b_stack->values[bottom] == b_stack->smallest || b_stack->values[bottom] == b_stack->largest)
 		{
-			// ft_printf(CYAN"Bottom found bottom most number under median : %d in index %d\n"RESET, a_stack->values[bottom], bottom);
+			// ft_printf(CYAN"Bottom found bottom most smallest or largest number : %d in index %d\n"RESET, b_stack->values[bottom], bottom);
 			break ;
 		}
 		bottom--;
@@ -139,6 +152,7 @@ void	b_fast_rot(t_ps *a_stack, t_ps *b_stack)
 		return ;
 	i = (b_stack->amount - bottom) < top ? bottom : top;
 	fast_rotate(b_stack, i);
+	// ft_printf("printable: %d, %d pa\n", a_stack->print, b_stack->print);
 	pa(a_stack, b_stack);
 }
 
@@ -156,6 +170,7 @@ void	fast_rotate(t_ps *stack, int pos)
 	if (stack->amount / 2 < pos)
 		while (stack->values[0] != nb)
 		{
+			// ft_printf("printable: %d rra fast rot\n", stack->print);
 			rra(stack);
 			// ft_printf(RED BOLD "RRAAAAAAAA\n"RESET);
 			// read(0, s, 1);
@@ -163,6 +178,7 @@ void	fast_rotate(t_ps *stack, int pos)
 	else
 		while (stack->values[0] != nb)
 		{
+			// ft_printf("printable: %d ra fast rot\n", stack->print);
 			ra(stack);
 			// ft_printf(RED BOLD "RAAAAAAAAA\n"RESET);
 			// read(0, s, 1);

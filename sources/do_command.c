@@ -28,6 +28,7 @@ int		is_in_order(t_ps stack, int check_size)
 
 void	do_command(t_ps *a_stack, t_ps *b_stack, char *str)
 {
+	ft_printf("Command: %s\n", str);
 	if (ft_strequ("sa", str))
 		sa(a_stack);
 	else if (ft_strequ("sb", str))
@@ -50,14 +51,14 @@ void	do_command(t_ps *a_stack, t_ps *b_stack, char *str)
 		rrb(b_stack);
 	else if (ft_strequ("rrr", str))
 		rrr(a_stack, b_stack);
-	// else                           // COMMENT BACK
-	// 	ft_exit("Command error");
-	// ft_printf("a_stack:\n");
-	// for (int j = 0; j < a_stack->amount; j++) {
-	// 	ft_printf("%d: %d\n", j, a_stack->values[j]);
-	// }
-	// ft_printf("b_stack:\n");
-	// for (int k = 0; k < b_stack->amount; k++) {
-	// 	ft_printf("%d: %d\n", k, b_stack->values[k]);
-	// }
+	else
+		ft_exit("Command error");
+	ft_printf("a_stack:\n");
+	for (int j = 0; j < a_stack->amount; j++) {
+		ft_printf("%d: %d\n", j, a_stack->values[j]);
+	}
+	ft_printf("b_stack:\n");
+	for (int k = 0; k < b_stack->amount; k++) {
+		ft_printf("%d: %d\n", k, b_stack->values[k]);
+	}
 }

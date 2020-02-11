@@ -128,5 +128,6 @@ t_ps		*parse(int ac, char **av)
 			ft_exit("Error: Duplicate numbers");
 		ft_small_big(stack);
 	}
+	stack->visual = stack->print;
 	return (stack);
 }

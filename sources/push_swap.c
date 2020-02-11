@@ -51,6 +51,7 @@ void	ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 			|| a_stack->values[0] == a_stack->smallest)
 			&& !is_in_order(*a_stack, 1) && find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[0]) == -1)
 		{
+			// ft_printf("printable: %d, %d split while ra\n", a_stack->print, b_stack->print);
 			ra(a_stack);
 			add_sorted(a_stack, a_stack->values[a_stack->amount - 1]);
 			// ft_printf(BOLD RED"YEET\n"RESET);
@@ -58,7 +59,9 @@ void	ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 		}
 		else if (b_next_int_order(ref, a_stack, b_stack))
 		{
+			// ft_printf("printable: %d, %d wplit while pa + ra\n", a_stack->print, b_stack->print);
 			pa(a_stack, b_stack);
+			// ft_printf("printable: %d, %d wplit while pa + ra\n", a_stack->print, b_stack->print);
 			ra(a_stack);
 			add_sorted(a_stack, a_stack->values[a_stack->amount - 1]);
 			// ft_printf(BOLD RED"NOOOO\n"RESET);
@@ -66,7 +69,10 @@ void	ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 		}
 		else if (!is_in_order(*a_stack, 1) && aft_next_in_order(ref, a_stack) &&
 				a_stack->amount - a_stack->sorted_amount <= 2)
+		{
+			// ft_printf("printable: %d, %d wplit while sa\n", a_stack->print, b_stack->print);
 			sa(a_stack);
+		}
 		else
 		{
 			next_nb_under_med(ref, a_stack, b_stack, med);
@@ -92,10 +98,16 @@ void	ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 	// ft_printf("a_stack->amount - 1 (%d) - find_in_stack (: %d) = %d. a_stack->amount (%d) / 2 = %d\n", a_stack->amount - 1, find_in_stack(a_stack->values, a_stack->amount, a_stack->sorted_max), (a_stack->amount - 1) - find_in_stack(a_stack->values, a_stack->amount, a_stack->sorted_max), a_stack->amount - 1, (a_stack->amount - 1) / 2);
 	if ((a_stack->amount - 1) - find_in_stack(a_stack->values, a_stack->amount, a_stack->sorted_max) < (a_stack->amount - 1) / 2 && !is_in_order(*a_stack, 1))
 		while (a_stack->values[a_stack->amount - 1] != a_stack->sorted_max && a_stack->sorted_max != 0)
+		{
+			// ft_printf("printable: %d, %d split rra\n", a_stack->print, b_stack->print);
 			rra(a_stack);
+		}
 	else if (!is_in_order(*a_stack, 1))
 		while (a_stack->values[a_stack->amount - 1] != a_stack->sorted_max && a_stack->sorted_max != 0)
+		{
+			// ft_printf("printable: %d, %d split ra\n", a_stack->print, b_stack->print);
 			ra(a_stack);
+		}
 	// ft_printf(RED"\nSTACKS AFTER SPLITTING\n"RESET);
 	// ft_printf("a stack:\n");
 	// for (int i = 0; i < a_stack->amount; i++) {
@@ -129,11 +141,15 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref)
 		if (b_stack->amount > 1)
 			b_fast_rot(a_stack, b_stack);
 		else
+		{
+			// ft_printf("printable: %d, %d pa insert\n", a_stack->print, b_stack->print);
 			pa(a_stack, b_stack);
+		}
 		// ft_printf(BLUE"stack amount (%d)\n"RESET, b_stack->amount);
 		// ft_printf(BLUE"is in order : %s\n"RESET, !is_in_order(*a_stack, 1) ? "no" : "yes");
 		if (a_stack->amount - a_stack->sorted_amount == 2 && !is_in_order(*a_stack, 1) && b_stack->amount == 0)
 		{
+			// ft_printf("printable: %d, %d sa insert\n", a_stack->print, b_stack->print);
 			sa(a_stack);
 			// ra(a_stack);
 			// ra(a_stack);
@@ -150,6 +166,7 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref)
 		}
 		while (next_in_order(ref, a_stack) && !is_in_order(*a_stack, 1))
 		{
+			// ft_printf("printable: %d, %d ra insert\n", a_stack->print, b_stack->print);
 			ra(a_stack);
 			add_sorted(a_stack, a_stack->values[a_stack->amount - 1]);
 			// ft_printf(BOLD RED"AAAAAAAAAAA\n"RESET);
@@ -204,15 +221,15 @@ void	solve(t_ps *a_stack, t_ps *b_stack)
 		// ft_printf(RED BOLD"\n\nNEW ROUND\n\n"RESET);
 	}
 	free_struct(ref);
-	ft_printf(BG_WHITE BLACK"FINAL STACKS:\n"RESET);
-	ft_printf("a stack:\n");
-	for (int i = 0; i < a_stack->amount; i++) {
-		ft_printf("[%d]: %d\n", i, a_stack->values[i]);
-	}
-	ft_printf("b stack:\n");
-	for (int j = 0; j < b_stack->amount; j++) {
-		ft_printf("[%d]: %d\n", j, b_stack->values[j]);
-	}
+	// ft_printf(BG_WHITE BLACK"FINAL STACKS:\n"RESET);
+	// ft_printf("a stack:\n");
+	// for (int i = 0; i < a_stack->amount; i++) {
+	// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
+	// }
+	// ft_printf("b stack:\n");
+	// for (int j = 0; j < b_stack->amount; j++) {
+	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+	// }
 }
 
 int		main(int argc, char **argv)
@@ -226,6 +243,7 @@ int		main(int argc, char **argv)
 	a_stack->print = TRUE;
 	if (is_in_order(*a_stack, 1))
 		return (0);
+	a_stack->print = TRUE;
 	b_stack = b_init(a_stack);
 	ft_small_big(a_stack);
 	if (a_stack->size > 5)
