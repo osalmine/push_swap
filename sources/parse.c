@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/10 15:40:23 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/12 14:12:15 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ t_ps		*parse(int ac, char **av)
 		stack->sorted_amount = 0;
 		if (ac >= 2 && ft_strequ(av[1], "-v"))
 		{
-			stack->print = TRUE;
+			stack->visual = TRUE;
 			i++;
 		}
 		if ((long long)ft_strlen(av[i]) > ft_atoi(av[i]))
@@ -128,6 +128,5 @@ t_ps		*parse(int ac, char **av)
 			ft_exit("Error: Duplicate numbers");
 		ft_small_big(stack);
 	}
-	stack->visual = stack->print;
 	return (stack);
 }

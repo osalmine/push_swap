@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:02 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/11 11:41:52 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:28:06 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int			find_in_stack(int *arr, int amount, int value)
 	i = 0;
 	while (i < amount)
 	{
-//		ft_printf("stack val at i (%d) is %d and value is %d\n", i, stack->values[i], value);
 		if (arr[i] == value)
+		{
+			// ft_printf("arr val at i (%d) is %d and value is %d\n", i, arr[i], value);
 			return (i);
+		}
 		i++;
 	}
 	return (-1);

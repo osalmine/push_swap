@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/11 11:55:29 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:27:53 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,30 @@ void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 
 	top = 0;
 	// ft_printf(UNDERLINE RED"\n\nNEXT NB UNDER MEDIAN\n\n"RESET);
+	// ft_printf("a stack:\n");
+	// for (int i = 0; i < a_stack->amount; i++) {
+	// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
+	// }
+	// ft_printf("b stack:\n");
+	// for (int j = 0; j < b_stack->amount; j++) {
+	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+	// }
 	bottom = a_stack->amount - 1;
 	// ft_printf("Median is %d\n", med);
 	// ft_printf("Bottom start pos: %d\n", bottom);
-	while (top < a_stack->amount)
+	// ft_printf("Amount of numbers currently sorted: %d\n", a_stack->sorted_amount);
+	while (top <= a_stack->amount / 2)
 	{
 		// ft_printf("CURRENT TOP (%d) VALUE INSPECTED: %d\n", top, a_stack->values[top]);
-		if (a_stack->values[top] <= med && find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[bottom]) == -1)
+		// ft_printf("%s and %s\n", a_stack->values[top] <= med ? "top val is under med" : "top val isn't under med", find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[top]) == -1 ? "Find in stack didn't find inspected val in sorted arr" : "Find in stack found the inspected val in the sorted arr");
+		if (a_stack->values[top] <= med && find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[top]) == -1)
 		{
 			// ft_printf(CYAN"Top found top most number under median : %d in index %d\n"RESET, a_stack->values[top], top);
 			break ;
 		}
 		top++;
 	}
-	while (bottom > 0)
+	while (bottom > a_stack->amount / 2)
 	{
 		// ft_printf("CURRENT BOT (%d) VALUE INSPECTED: %d\n", bottom, a_stack->values[bottom]);
 		if (a_stack->values[bottom] <= med && find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[bottom]) == -1)
@@ -89,13 +99,14 @@ void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 		}
 		bottom--;
 	}
-	if (bottom == 0)
+	// ft_printf("Bottom: %d\n", bottom);
+	if (bottom <= 0)
 		return ;
 	// ft_printf("Top first found nb at index:\t%d\n", top);
 	// ft_printf("Bottom first found nb at index:\t%d\n", bottom);
 	i = (a_stack->amount - bottom) < top ? bottom : top;
 	// ft_printf("next nb under median is in index: %d\n", i);
-	fast_rotate(a_stack, i);
+	fast_rotate(a_stack, i, 'a');
 	if ((next_in_order(ref, a_stack) \
 		|| a_stack->values[0] == a_stack->smallest)
 		&& !is_in_order(*a_stack, 1))
@@ -148,15 +159,16 @@ void	b_fast_rot(t_ps *a_stack, t_ps *b_stack)
 		}
 		bottom--;
 	}
-	if (bottom == 0)
+//	ft_printf("Bottom: %d\n", bottom);
+	if (bottom <= 0)
 		return ;
 	i = (b_stack->amount - bottom) < top ? bottom : top;
-	fast_rotate(b_stack, i);
+	fast_rotate(b_stack, i, 'b');
 	// ft_printf("printable: %d, %d pa\n", a_stack->print, b_stack->print);
 	pa(a_stack, b_stack);
 }
 
-void	fast_rotate(t_ps *stack, int pos)
+void	fast_rotate(t_ps *stack, int pos, char ab)
 {
 	int nb;
 	// char s[1];
@@ -171,7 +183,10 @@ void	fast_rotate(t_ps *stack, int pos)
 		while (stack->values[0] != nb)
 		{
 			// ft_printf("printable: %d rra fast rot\n", stack->print);
-			rra(stack);
+			if (ab == 'a')
+				rra(stack);
+			else
+				rrb(stack);
 			// ft_printf(RED BOLD "RRAAAAAAAA\n"RESET);
 			// read(0, s, 1);
 		}
@@ -179,7 +194,10 @@ void	fast_rotate(t_ps *stack, int pos)
 		while (stack->values[0] != nb)
 		{
 			// ft_printf("printable: %d ra fast rot\n", stack->print);
-			ra(stack);
+			if (ab == 'a')
+				ra(stack);
+			else
+				rb(stack);
 			// ft_printf(RED BOLD "RAAAAAAAAA\n"RESET);
 			// read(0, s, 1);
 		}

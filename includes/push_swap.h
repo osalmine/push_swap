@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/11 11:55:07 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/12 13:41:08 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int				b_next_int_order(t_ps *ref, t_ps* a_stack, t_ps *b_stack);
 int				amount_in_order(t_ps *ref, t_ps *stack);
 void			next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack,
 				int med);
-void			fast_rotate(t_ps *stack, int pos);
+void			fast_rotate(t_ps *stack, int pos, char ab);
 void			b_fast_rot(t_ps *a_stack, t_ps *b_stack);
 void			visual(t_ps *a_stack, t_ps *b_stack, char *command);
 void			clearScreen(void);
