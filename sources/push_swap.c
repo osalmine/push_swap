@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/12 15:26:57 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:34:34 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref)
 		// ft_printf("\n\nNew loop\n\nb_und_med : %d. If either hits 0, while loop stops\n", nbs_und_med);
 		// ft_printf("a_stack->smallest: %d\n", a_stack->smallest);
 		// ft_printf("a_stack sorted amount: %d\n", a_stack->sorted_amount);
-		// ft_printf("a stack:\n");
+		// ft_printf("\na stack:\n");
 		// for (int i = 0; i < a_stack->amount; i++) {
 		// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
 		// }
@@ -140,7 +140,7 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref)
 		// pa(a_stack, b_stack);
 		// ft_printf(BLUE"stack amount (%d)\n"RESET, b_stack->amount);
 		// ft_printf(BLUE"is in order : %s\n"RESET, !is_in_order(*a_stack, 1) ? "no" : "yes");
-		if (a_stack->amount - a_stack->sorted_amount == 2 && !is_in_order(*a_stack, 1) && b_stack->amount == 0)
+		if (a_stack->amount - a_stack->sorted_amount == 2 && !is_in_order(*a_stack, 1) && !next_in_order(ref, a_stack))
 			sa(a_stack);
 		while (next_in_order(ref, a_stack) && !is_in_order(*a_stack, 1))
 		{

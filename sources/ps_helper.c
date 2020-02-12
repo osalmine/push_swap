@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/12 15:27:53 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/12 17:34:28 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 	// ft_printf("Median is %d\n", med);
 	// ft_printf("Bottom start pos: %d\n", bottom);
 	// ft_printf("Amount of numbers currently sorted: %d\n", a_stack->sorted_amount);
-	while (top <= a_stack->amount / 2)
+	while (top < a_stack->amount / 2)
 	{
 		// ft_printf("CURRENT TOP (%d) VALUE INSPECTED: %d\n", top, a_stack->values[top]);
 		// ft_printf("%s and %s\n", a_stack->values[top] <= med ? "top val is under med" : "top val isn't under med", find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[top]) == -1 ? "Find in stack didn't find inspected val in sorted arr" : "Find in stack found the inspected val in the sorted arr");
@@ -100,7 +100,10 @@ void	next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 		bottom--;
 	}
 	// ft_printf("Bottom: %d\n", bottom);
-	if (bottom <= 0)
+
+
+	// REMOVE OR's FOR THIS TO WORK ATM
+	if (bottom < 0 || (find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[bottom]) > 1 && find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[top]) > -1))
 		return ;
 	// ft_printf("Top first found nb at index:\t%d\n", top);
 	// ft_printf("Bottom first found nb at index:\t%d\n", bottom);
