@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 13:43:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/12 17:58:15 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:33:12 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	visual(t_ps *a_stack, t_ps *b_stack, char *command)
 {
-	int a;
-	int b;
-	int s;
-	int val;
+	int			a;
+	int			b;
+	int			s;
+	int			val;
 
 	a = 0;
 	b = 0;

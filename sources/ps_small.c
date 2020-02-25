@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 15:49:45 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/12 13:42:23 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/25 10:27:48 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	sm_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 		bottom--;
 	}
 	i = (a_stack->amount - bottom) < top ? bottom : top;
-	fast_rotate(a_stack, i, 'a');
+	fast_rotate(a_stack, i, 'a', 't');
 	if (b_next_sm(a_stack, b_stack))
 		pa(a_stack, b_stack);
 	else if (!is_in_order(*a_stack, 1))

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:13 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/12 13:43:29 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/25 08:38:57 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,14 @@ void	check(t_ps *a_stack)
 		free(str);
 	}
 	if (size <= -1)
-		ft_exit("Checker: fd error");
+		ft_exit("Checker: read error");
 	if (!is_in_order(*a_stack, 1))
 		ft_exit("KO");
 	ft_printf("OK\n");
 	free_struct(b_stack);
 }
+
+// void	parse_check_flags()
 
 int		main(int argc, char **argv)
 {
@@ -61,8 +63,6 @@ int		main(int argc, char **argv)
 		return (0);
 	a_stack = parse(argc, argv);
 	// ft_printf("Visual: %d\n", a_stack->visual);
-	if (a_stack->print != TRUE)
-		a_stack->print = FALSE;
 	check(a_stack);
 	free_struct(a_stack);
 	return (0);

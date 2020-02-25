@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/12 13:41:08 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/25 12:36:49 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void			ft_exit(char *str);
 void			free_strsplit(char ***str);
 void			do_command(t_ps *a_stack, t_ps *b_stack, char *str);
 t_ps			*b_init(t_ps *a_stack);
+
+/*
+**	Mover functions and their helper functions
+*/
+
 void			sa(t_ps *a_stack);
 void			sb(t_ps *b_stack);
 void			ss(t_ps *a_stack, t_ps *b_stack);
@@ -66,15 +71,16 @@ void			rra(t_ps *a_stack);
 void			rra_push_down(t_ps *stack);
 void			rrb(t_ps *b_stack);
 void			rrr(t_ps *a_stack, t_ps *b_stack);
+
 int				median(t_ps *stack, int no_limit);
 int				is_in_order(t_ps stack, int check_size);
 void			free_struct(t_ps *stack);
 void			ft_small_big(t_ps *stack);
 void			solve(t_ps *a_stack, t_ps *b_stack);
 void			solve_3(t_ps *a_stack);
-void			ft_split(t_ps *a_stack, t_ps *b_stack, int med, t_ps *ref);
+void			ft_split(t_ps *a_stack, t_ps *b_stack);
+void			ft_insert(t_ps *a_stack, t_ps *b_stack);
 int				find_in_stack(int *arr, int amount, int value);
-void			ft_insert(t_ps *a_stack, t_ps *b_stack, t_ps *ref);
 t_ps			*ref_stack(t_ps *a_stack);
 int				check_with_ref(t_ps *ref, t_ps *stack);
 int				next_in_order(t_ps *ref, t_ps *stack);
@@ -83,12 +89,16 @@ int				b_next_int_order(t_ps *ref, t_ps* a_stack, t_ps *b_stack);
 int				amount_in_order(t_ps *ref, t_ps *stack);
 void			next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack,
 				int med);
-void			fast_rotate(t_ps *stack, int pos, char ab);
+void			fast_rotate(t_ps *stack, int pos, char ab, char top_bottom);
 void			b_fast_rot(t_ps *a_stack, t_ps *b_stack);
 void			visual(t_ps *a_stack, t_ps *b_stack, char *command);
 void			clearScreen(void);
 int				aft_next_in_order(t_ps *ref, t_ps *stack);
 void			solve_small(t_ps *a_stack, t_ps *b_stack);
 void			add_sorted(t_ps *stack, int nb);
+
+int				*prefer_index_b(t_ps *a_stack, t_ps *b_stack);
+int				moves_to_top(t_ps *stack, int nb);
+int				next_spot(t_ps *stack, int nb, char moves);
 
 #endif
