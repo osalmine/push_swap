@@ -1,5 +1,5 @@
 # push_swap
-Hive - push_swap (work in progress)
+Hive - push_swap
 
 Work in progress.
 
