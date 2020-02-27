@@ -12,6 +12,37 @@
 
 #include "../includes/push_swap.h"
 
+void	ft_lstrev(t_list **list)
+{
+	t_list *cur;
+	t_list *next;
+	t_list *prev;
+
+	prev = NULL;
+	cur = *list;
+	while (cur != NULL)
+	{
+		next = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = next;
+	}
+	*list = prev;
+}
+
+void		print_cmds(t_list *cmds)
+{
+	t_list *head;
+
+	head = cmds;
+	while (head)
+	{
+		if ((char*)head->content != NULL)
+			ft_printf("%s\n", (char*)head->content);
+		head = head->next;
+	}
+}
+
 int			find_in_stack(int *arr, int amount, int value)
 {
 	int i;

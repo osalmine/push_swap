@@ -32,3 +32,20 @@ void	free_strsplit(char ***str)
 		str = NULL;
 	}
 }
+
+t_list	*free_lst(t_list *lst)
+{
+	t_list	*ptr;
+	char	*str;
+
+	while (lst)
+	{
+		ptr = lst->next;
+		str = (char*)(lst->content);
+		ft_strdel(&str);
+		free(lst);
+		lst = ptr;
+	}
+	lst = NULL;
+	return (NULL);
+}

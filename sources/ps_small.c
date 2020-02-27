@@ -22,22 +22,22 @@ static int	b_next_sm(t_ps* a_stack, t_ps *b_stack)
 	{
 		a_stack->print = FALSE;
 		b_stack->print = FALSE;
-		pa(a_stack, b_stack);
+		pa(a_stack, b_stack, NULL);
 		if (is_in_order(*a_stack, 1))
 		{
-			pb(a_stack, b_stack);
+			pb(a_stack, b_stack, NULL);
 			a_stack->print = stack_print_copy;
 			b_stack->print = stack_print_copy;
 			return (1);
 		}
-		pb(a_stack, b_stack);
+		pb(a_stack, b_stack, NULL);
 		a_stack->print = stack_print_copy;
 		b_stack->print = stack_print_copy;
 	}
 	return (0);
 }
 
-static void	sm_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
+static t_list	*sm_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med, t_list *cmds)
 {
 	int top;
 	int bottom;
@@ -60,40 +60,42 @@ static void	sm_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med)
 		bottom--;
 	}
 	i = (a_stack->amount - bottom) < top ? bottom : top;
-	fast_rotate(a_stack, i, 'a', 't');
+	cmds = fast_rotate(a_stack, i, 'a', 't', cmds);
 	if (b_next_sm(a_stack, b_stack))
-		pa(a_stack, b_stack);
+		cmds = pa(a_stack, b_stack, cmds);
 	else if (!is_in_order(*a_stack, 1))
-		pb(a_stack, b_stack);
+		cmds = pb(a_stack, b_stack, cmds);
+	return (cmds);
 }
 
-void		solve_3(t_ps *a_stack)
+t_list		*solve_3(t_ps *a_stack, t_list *cmds)
 {
 	int i;
 
 	if (a_stack->amount <= 1)
-		return ;
+		return (cmds);
 	i = a_stack->amount - 1;
 	if (is_in_order(*a_stack, 1))
-		return ;
+		return (cmds);
 	if (a_stack->amount == 2)
-		sa(a_stack);
+		cmds = sa(a_stack, cmds);
 	ft_small_big(a_stack);
 	while (!is_in_order(*a_stack, 0))
 	{
 		if (a_stack->largest == a_stack->values[i])
-			sa(a_stack);
+			cmds = sa(a_stack, cmds);
 		else if (a_stack->smallest == a_stack->values[0])
 		{
-			sa(a_stack);
-			ra(a_stack);
+			cmds = sa(a_stack, cmds);
+			cmds = ra(a_stack, cmds);
 		}
 		else
-			ra(a_stack);
+			cmds = ra(a_stack, cmds);
 	}
+	return (cmds);
 }
 
-void		solve_small(t_ps *a_stack, t_ps *b_stack)
+t_list		*solve_small(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 {
 	int		med;
 	t_ps	*ref;
@@ -101,26 +103,27 @@ void		solve_small(t_ps *a_stack, t_ps *b_stack)
 
 	med = median(a_stack, 0);
 	ref = ref_stack(a_stack);
-	// ft_printf("Solve small\n");
 	if (a_stack->amount > 3)
 	{
 		while (a_stack->smallest < med && !is_in_order(*a_stack, 1))
 		{
 			// read (0, s, 1);
 			if (b_next_sm(a_stack, b_stack))
-				pa(a_stack, b_stack);
+				cmds = pa(a_stack, b_stack, cmds);
 			else
-				sm_nb_under_med(ref, a_stack, b_stack, med);
+				cmds = sm_nb_under_med(ref, a_stack, b_stack, med, cmds);
 			ft_small_big(a_stack);
 			// ft_printf("median: %d, a stack smallest: %d\n", med, a_stack->smallest);
 			// read (0, s, 1);
 		}
-		solve_3(a_stack);
+		cmds = solve_3(a_stack, cmds);
 		while (b_stack->amount)
-			pa(a_stack, b_stack);
+			cmds = pa(a_stack, b_stack, cmds);
 		if (!is_in_order(*a_stack, 1))
-			sa(a_stack);
+			cmds = sa(a_stack, cmds);
 	}
 	else
-		solve_3(a_stack);
+		cmds = solve_3(a_stack, cmds);
+	free_struct(ref);
+	return (cmds);
 }

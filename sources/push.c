@@ -90,7 +90,7 @@ void	push_down(t_ps *stack)
 	// read(0, s, 1);
 }
 
-void		pa(t_ps *a_stack, t_ps *b_stack)
+t_list		*pa(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 {
 	if (b_stack->amount > 0)
 	{
@@ -99,9 +99,9 @@ void		pa(t_ps *a_stack, t_ps *b_stack)
 		push_up(b_stack);
 		a_stack->amount++;
 		b_stack->amount--;
-		if (a_stack->print == TRUE)
+		if (a_stack->print == TRUE && cmds)
 		{
-			ft_printf("pa\n");
+			ft_lstadd(&cmds, ft_lstnew("pa", sizeof(char*)));
 			// ft_printf("a stack:\n");
 			// for (int a = 0; a < a_stack->amount; a++) {
 			// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
@@ -112,9 +112,10 @@ void		pa(t_ps *a_stack, t_ps *b_stack)
 			// }
 		}
 	}
+	return (cmds);
 }
 
-void		pb(t_ps *a_stack, t_ps *b_stack)
+t_list		*pb(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 {
 //	char s[1];
 
@@ -138,9 +139,9 @@ void		pb(t_ps *a_stack, t_ps *b_stack)
 		// }
 		// ft_printf("\n");
 //		read(0, s, 1);
-		if (a_stack->print == TRUE)
+		if (a_stack->print == TRUE && cmds)
 		{
-			ft_printf("pb\n");
+			ft_lstadd(&cmds, ft_lstnew("pb", sizeof(char*)));
 			// ft_printf("a stack:\n");
 			// for (int a = 0; a < a_stack->amount; a++) {
 			// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
@@ -151,4 +152,5 @@ void		pb(t_ps *a_stack, t_ps *b_stack)
 			// }
 		}
 	}
+	return (cmds);
 }

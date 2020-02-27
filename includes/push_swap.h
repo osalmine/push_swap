@@ -57,29 +57,30 @@ t_ps			*b_init(t_ps *a_stack);
 **	Mover functions and their helper functions
 */
 
-void			sa(t_ps *a_stack);
-void			sb(t_ps *b_stack);
-void			ss(t_ps *a_stack, t_ps *b_stack);
-void			pa(t_ps *a_stack, t_ps *b_stack);
-void			pb(t_ps *a_stack, t_ps *b_stack);
-void			ra(t_ps *a_stack);
-void			rb(t_ps *b_stack);
-void			rr(t_ps *a_stack, t_ps *b_stack);
+t_list			*sa(t_ps *a_stack, t_list *cmds);
+t_list			*sb(t_ps *b_stack, t_list *cmds);
+t_list			*ss(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
+t_list			*pa(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
+t_list			*pb(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
+t_list			*ra(t_ps *a_stack, t_list *cmds);
+t_list			*rb(t_ps *b_stack, t_list *cmds);
+t_list			*rr(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
+t_list			*rra(t_ps *a_stack, t_list *cmds);
+t_list			*rrb(t_ps *b_stack, t_list *cmds);
+t_list			*rrr(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
 void			push_up(t_ps *stack);
 void			push_down(t_ps *stack);
-void			rra(t_ps *a_stack);
 void			rra_push_down(t_ps *stack);
-void			rrb(t_ps *b_stack);
-void			rrr(t_ps *a_stack, t_ps *b_stack);
 
 int				median(t_ps *stack, int no_limit);
 int				is_in_order(t_ps stack, int check_size);
 void			free_struct(t_ps *stack);
 void			ft_small_big(t_ps *stack);
-void			solve(t_ps *a_stack, t_ps *b_stack);
-void			solve_3(t_ps *a_stack);
-void			ft_split(t_ps *a_stack, t_ps *b_stack);
-void			ft_insert(t_ps *a_stack, t_ps *b_stack);
+t_list			*solve(t_ps *a_stack, t_ps *b_stack);
+t_list			*solve_3(t_ps *a_stack, t_list *cmds);
+t_list			*solve_small(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
+t_list			*ft_split(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
+t_list			*ft_insert(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
 int				find_in_stack(int *arr, int amount, int value);
 t_ps			*ref_stack(t_ps *a_stack);
 int				check_with_ref(t_ps *ref, t_ps *stack);
@@ -89,16 +90,20 @@ int				b_next_int_order(t_ps *ref, t_ps* a_stack, t_ps *b_stack);
 int				amount_in_order(t_ps *ref, t_ps *stack);
 void			next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack,
 				int med);
-void			fast_rotate(t_ps *stack, int pos, char ab, char top_bottom);
+t_list			*fast_rotate(t_ps *stack, int pos, char ab, char top_bot,
+				t_list *cmds);
 void			b_fast_rot(t_ps *a_stack, t_ps *b_stack);
 void			visual(t_ps *a_stack, t_ps *b_stack, char *command);
 void			clearScreen(void);
 int				aft_next_in_order(t_ps *ref, t_ps *stack);
-void			solve_small(t_ps *a_stack, t_ps *b_stack);
 void			add_sorted(t_ps *stack, int nb);
 
 int				*prefer_index_b(t_ps *a_stack, t_ps *b_stack);
 int				moves_to_top(t_ps *stack, int nb);
 int				next_spot(t_ps *stack, int nb, char moves);
+void			print_cmds(t_list *cmds);
+t_list			*free_lst(t_list *lst);
+void			ft_lstrev(t_list **list);
+t_list			*combine_cmds(t_list *cmds);
 
 #endif

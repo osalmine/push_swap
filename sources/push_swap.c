@@ -12,18 +12,19 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_split(t_ps *a_stack, t_ps *b_stack)
+t_list	*ft_split(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 {
 	// char s[1];
 
 	while (a_stack->amount > 2)
 	{
 		while (a_stack->values[0] != a_stack->largest && a_stack->values[0] != a_stack->smallest)
-			pb(a_stack, b_stack);
-		ra(a_stack);
+			cmds = pb(a_stack, b_stack, cmds);
+		if (a_stack->amount > 2)
+			cmds = ra(a_stack, cmds);
 	}
 	if (a_stack->values[0] != a_stack->largest)
-		sa(a_stack);
+		cmds = sa(a_stack, cmds);
 	// ft_printf("a stack:\n");
 	// for (int i = 0; i < a_stack->amount; i++) {
 	// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
@@ -33,9 +34,10 @@ void	ft_split(t_ps *a_stack, t_ps *b_stack)
 	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
 	// }
 	// read(0, s, 1);
+	return (cmds);
 }
 
-void	ft_insert(t_ps *a_stack, t_ps *b_stack)
+t_list	*ft_insert(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 {
 	int *optimal;
 	// char s[1];
@@ -63,22 +65,12 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack)
 		// }
 		optimal = prefer_index_b(a_stack, b_stack);
 		// ft_printf("\nOptimal: %d, nb: %d\n", optimal[0], b_stack->values[optimal[0]]);
-		fast_rotate(b_stack, optimal[0], 'b', 't');
-		fast_rotate(a_stack, optimal[1],'a', 't');
-		pa(a_stack, b_stack);
+		cmds = fast_rotate(b_stack, optimal[0], 'b', 't', cmds);
+		cmds = fast_rotate(a_stack, optimal[1],'a', 't', cmds);
+		cmds = pa(a_stack, b_stack, cmds);
 		free(optimal);
-		// if (b_stack->amount > 0)
-		// 	ra(a_stack);
-		// ft_printf("a stack:\n");
-		// for (int a = 0; a < a_stack->amount; a++) {
-		// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
-		// }
-		// ft_printf("b stack:\n");
-		// for (int j = 0; j < b_stack->amount; j++) {
-		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
-		// }
 	}
-	fast_rotate(a_stack, find_in_stack(a_stack->values, a_stack->amount, a_stack->largest), 'a', 'b');
+	cmds = fast_rotate(a_stack, find_in_stack(a_stack->values, a_stack->amount, a_stack->largest), 'a', 'b', cmds);
 	// ft_printf("a stack:\n");
 	// for (int a = 0; a < a_stack->amount; a++) {
 	// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
@@ -87,13 +79,16 @@ void	ft_insert(t_ps *a_stack, t_ps *b_stack)
 	// for (int j = 0; j < b_stack->amount; j++) {
 	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
 	// }
+	return (cmds);
 }
 
 int		main(int argc, char **argv)
 {
 	t_ps	*a_stack;
 	t_ps	*b_stack;
+	t_list	*cmds;
 
+	cmds = (t_list*)malloc(sizeof(t_list));
 	if (argc < 2)
 		return (0);
 	a_stack = parse(argc, argv);
@@ -104,13 +99,27 @@ int		main(int argc, char **argv)
 	ft_small_big(a_stack);
 	if (a_stack->size > 5)
 	{
-		ft_split(a_stack, b_stack);
-		ft_insert(a_stack, b_stack);
+		cmds = ft_split(a_stack, b_stack, cmds);
+		cmds = ft_insert(a_stack, b_stack, cmds);
 	}
 	else
-		solve_small(a_stack, b_stack);
+		cmds = solve_small(a_stack, b_stack, cmds);
+	// char s[1];
+	// ft_printf("After return solve small\n");
+	// read (0, s, 1);
+	// ft_printf("a stack:\n");
+	// for (int a = 0; a < a_stack->amount; a++) {
+	// 	ft_printf("[%d]: %d\n", a, a_stack->values[a]);
+	// }
+	// ft_printf("b stack:\n");
+	// for (int j = 0; j < b_stack->amount; j++) {
+	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
+	// }
 	free_struct(a_stack);
 	free_struct(b_stack);
+	cmds = combine_cmds(cmds);
+	print_cmds(cmds);
+	cmds = free_lst(cmds);
 	return (0);
 }
 

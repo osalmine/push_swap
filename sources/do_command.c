@@ -30,27 +30,27 @@ void	do_command(t_ps *a_stack, t_ps *b_stack, char *str)
 {
 	// ft_printf("Command: %s\n", str);
 	if (ft_strequ("sa", str))
-		sa(a_stack);
+		sa(a_stack, NULL);
 	else if (ft_strequ("sb", str))
-		sb(b_stack);
+		sb(b_stack, NULL);
 	else if (ft_strequ("ss", str))
-		ss(a_stack, b_stack);
+		ss(a_stack, b_stack, NULL);
 	else if (ft_strequ("pa", str))
-		pa(a_stack, b_stack);
+		pa(a_stack, b_stack, NULL);
 	else if (ft_strequ("pb", str))
-		pb(a_stack, b_stack);
+		pb(a_stack, b_stack, NULL);
 	else if (ft_strequ("ra", str))
-		ra(a_stack);
+		ra(a_stack, NULL);
 	else if (ft_strequ("rb", str))
-		rb(b_stack);
+		rb(b_stack, NULL);
 	else if (ft_strequ("rr", str))
-		rr(a_stack, b_stack);
+		rr(a_stack, b_stack, NULL);
 	else if (ft_strequ("rra", str))
-		rra(a_stack);
+		rra(a_stack, NULL);
 	else if (ft_strequ("rrb", str))
-		rrb(b_stack);
+		rrb(b_stack, NULL);
 	else if (ft_strequ("rrr", str))
-		rrr(a_stack, b_stack);
+		rrr(a_stack, b_stack, NULL);
 	else
 		ft_exit("Command error");
 	// ft_printf("a_stack:\n");
