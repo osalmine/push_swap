@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/28 13:18:35 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/28 17:43:28 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ t_list	*ft_split(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 {
 	// char s[1];
 
-	while (a_stack->amount > 2)
+	while (a_stack->amount > 3)
 	{
 		while (a_stack->values[0] != a_stack->largest && a_stack->values[0] != a_stack->smallest)
 			cmds = pb(a_stack, b_stack, cmds);
-		if (a_stack->amount > 2)
+		if (a_stack->amount > 3)
 			cmds = ra(a_stack, cmds);
 	}
-	if (a_stack->values[0] != a_stack->largest)
-		cmds = sa(a_stack, cmds);
+	cmds = solve_3(a_stack, cmds);
 	// ft_printf("a stack:\n");
 	// for (int i = 0; i < a_stack->amount; i++) {
 	// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
@@ -64,7 +63,7 @@ t_list	*ft_insert(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 		// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
 		// }
 		optimal = prefer_index_b(a_stack, b_stack);
-		// ft_printf("\nOptimal: %d, nb: %d\n", optimal[0], b_stack->values[optimal[0]]);
+		// ft_printf("\nOptimal number to rotate returned to insert: %d, nb: %d\n", optimal[0], b_stack->values[optimal[0]]);
 		cmds = fast_rotate(b_stack, optimal[0], 'b', 't', cmds);
 		cmds = fast_rotate(a_stack, optimal[1],'a', 't', cmds);
 		cmds = pa(a_stack, b_stack, cmds);

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/28 13:18:41 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/28 17:20:40 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@ void		ft_small_big(t_ps *stack)
 		stack->sorted_max = largest;
 	}
 }
-
-// void	opt_rot(t_ps *a_stack, t_ps *b_stack, int *optimal)
-// {
-//
-// }
 
 t_list	*combine_cmds(t_list *cmds)
 {
@@ -149,21 +144,32 @@ int		*prefer_index_b(t_ps *a_stack, t_ps *b_stack)
 	if (!(ind = (int*)malloc(sizeof(int) * 2)))
 		ft_exit("Error");
 	ind[0] = 0;
-	ind[1] = next_spot(a_stack, b_stack->values[0], 'n');
+	ind[1] = ft_abs(next_spot(a_stack, b_stack, b_stack->values[0], 'n'));
 	if (b_stack->amount == 1)
 		return(ind);
-	opt_moves = moves_to_top(b_stack, b_stack->values[0]) + next_spot(a_stack, b_stack->values[0], 'm');
+	i = 0;
+	opt_moves = ft_abs(moves_to_top(b_stack, b_stack->values[0])) + ft_abs(next_spot(a_stack, b_stack, b_stack->values[0], 'm'));
+	// ft_printf(GREEN"opt_moves before counting optimal rotation: %d\n"RESET, opt_moves);
+	// ft_printf(BLUE"OPTIMAL ROTATION: %d\n"RESET, opt_rot(next_spot(a_stack, b_stack, b_stack->values[i], 'm'), moves_to_top(b_stack, b_stack->values[i])));
+	opt_moves -= opt_rot(next_spot(a_stack, b_stack, b_stack->values[i], 'm'), moves_to_top(b_stack, b_stack->values[i]));
+	// ft_printf(GREEN"opt_moves after counting optimal rotation: %d\n"RESET, opt_moves);
 	// ft_printf(BLUE"\nSTARTING OPT_MOVES: %d\n"RESET, opt_moves);
 	i = 1;
 	while (i < b_stack->amount)
 	{
-		cur_moves = moves_to_top(b_stack, b_stack->values[i]) + next_spot(a_stack, b_stack->values[i], 'm');
+		// ft_printf(YELLOW"\nNEW ROUND\n\n"RESET);
+		cur_moves = ft_abs(moves_to_top(b_stack, b_stack->values[i])) + ft_abs(next_spot(a_stack, b_stack, b_stack->values[i], 'm'));
+		// ft_printf(GREEN"cur_moves before counting optimal rotation: %d\n"RESET, cur_moves);
+		// ft_printf(BLUE"OPTIMAL ROTATION: %d\n"RESET, opt_rot(next_spot(a_stack, b_stack, b_stack->values[i], 'm'), moves_to_top(b_stack, b_stack->values[i])));
+		if (opt_rot(next_spot(a_stack, b_stack, b_stack->values[i], 'm'), moves_to_top(b_stack, b_stack->values[i])) != 0)
+			cur_moves = opt_rot(next_spot(a_stack, b_stack, b_stack->values[i], 'm'), moves_to_top(b_stack, b_stack->values[i]));
+		// ft_printf(GREEN"cur_moves after counting optimal rotation: %d\n"RESET, cur_moves);
 		// ft_printf(RED"Moves for %d are %d\n"RESET, b_stack->values[i], cur_moves);
 		if (opt_moves > cur_moves)
 		{
 			// ft_printf(BLUE"Opt_moves : %d is more then cur_moves: %d\n"RESET, opt_moves, cur_moves);
 			ind[0] = i;
-			ind[1] = next_spot(a_stack, b_stack->values[i], 'n');
+			ind[1] = next_spot(a_stack, b_stack, b_stack->values[i], 'n');
 			opt_moves = cur_moves;
 		}
 		i++;
@@ -171,82 +177,95 @@ int		*prefer_index_b(t_ps *a_stack, t_ps *b_stack)
 	return(ind);
 }
 
+int		opt_rot(int a_moves, int b_moves)
+{
+	// ft_printf(RED"\nIN OPTIMAL ROT:\nif a is neg, rra else ra: a: %d\nif b is neg, rrb else rb: %d\nIf they aren't the same type, nothing is done\n\n"RESET, a_moves, b_moves);
+	if ((a_moves < 0 && b_moves < 0) || (a_moves > 0 && b_moves > 0))
+	{
+		if (ft_abs(a_moves) > ft_abs(b_moves))
+		{
+			// ft_printf("A (%d) > B (%d), so combined moves substracted from current moves is: a - b = %d\n", ft_abs(a_moves), ft_abs(b_moves), (ft_abs(a_moves)) - (ft_abs(b_moves)));
+			return (ft_abs(a_moves));
+		}
+		else
+		{
+			// ft_printf("B (%d) > A (%d), so combined moves substracted from current moves is: b - a = %d\n", ft_abs(b_moves), ft_abs(a_moves), ft_abs(b_moves) - ft_abs(a_moves));
+			return (ft_abs(b_moves));
+		}
+	}
+	return (0);
+}
+
 int		moves_to_top(t_ps *stack, int nb)
 {
 	int moves;
 
 	moves = find_in_stack(stack->values, stack->amount, nb);
-	// ft_printf("\nMOVE TO TOP:\n");
+	// ft_printf("\nMOVE TO B TOP:\n");
 	// ft_printf("%d is in b_stack at index %d (= moves)\n", nb, moves);
-	moves = (stack->amount / 2) < moves ? (stack->amount - moves) : moves;
-	// ft_printf("b_stack rot amount: %d\n", moves);
+	moves = (stack->amount / 2) < moves ? -(stack->amount - moves) : moves;
+	// ft_printf(GREEN"b_stack rot amount to get nb %d to top: %d\n"RESET, nb, moves);
 	return (moves);
 }
 
-int		next_spot(t_ps *stack, int nb, char move)
+int		next_spot(t_ps *a_stack, t_ps *b_stack, int nb, char move)
 {
 	int top;
 	int bottom;
 	int moves;
 
 	top = 0;
-	// ft_printf(UNDERLINE RED"\n\nNEXT NB UNDER MEDIAN\n\n"RESET);
-	// ft_printf("a stack:\n");
-	// for (int i = 0; i < a_stack->amount; i++) {
-	// 	ft_printf("[%d]: %d\n", i, a_stack->values[i]);
-	// }
-	// ft_printf("b stack:\n");
-	// for (int j = 0; j < b_stack->amount; j++) {
-	// 	ft_printf("[%d]: %d\n", j, b_stack->values[j]);
-	// }
-	bottom = stack->amount - 1;
-	while (top <= stack->amount / 2)
+	bottom = a_stack->amount - 1;
+	while (top <= a_stack->amount / 2)
 	{
-		// ft_printf("CURRENT TOP (%d) VALUE INSPECTED: %d\n", top, stack->values[top]);
-		// ft_printf("%s and %s\n", a_stack->values[top] <= med ? "top val is under med" : "top val isn't under med", find_in_stack(a_stack->sorted, a_stack->sorted_amount, a_stack->values[top]) == -1 ? "Find in stack didn't find inspected val in sorted arr" : "Find in stack found the inspected val in the sorted arr");
-		if (top == 0 && stack->values[top] > nb && stack->values[stack->amount - 1] < nb)
+		// ft_printf("CURRENT TOP (%d) VALUE INSPECTED IN A: %d\n", top, a_stack->values[top]);
+		if (top == 0 && a_stack->values[top] > nb && a_stack->values[a_stack->amount - 1] < nb)
 		{
-			// ft_printf("Stack values[%d] : %d > %d && stack values at the bottom: %d < %d\n", top, stack->values[top], nb, stack->values[stack->amount - 1], nb);
+			// ft_printf("Stack values[%d] : %d > %d && stack values at the bottom: %d < %d\n", top, a_stack->values[top], nb, a_stack->values[a_stack->amount - 1], nb);
 			// ft_printf("Top preference: %d\n", top);
 			break ;
 		}
-		else if (stack->values[top] < nb && stack->values[top + 1] > nb)
+		else if (a_stack->values[top] < nb && a_stack->values[top + 1] > nb)
 		{
-			// ft_printf("Stack values[%d] : %d < %d && stack->values[%d + 1] : %d > %d\n", top, stack->values[top], nb, top, stack->values[top + 1], nb);
+			// ft_printf("Stack values[%d] : %d < %d && stack->values[%d + 1] : %d > %d\n", top, a_stack->values[top], nb, top, a_stack->values[top + 1], nb);
 			top++;
 			// ft_printf("Top preference: %d\n", top);
 			break ;
 		}
 		top++;
 	}
-	while (bottom >= stack->amount / 2)
+	while (bottom >= a_stack->amount / 2)
 	{
-		// ft_printf("CURRENT BOT (%d) VALUE INSPECTED: %d\n", bottom, stack->values[bottom]);
-		if (bottom == stack->amount - 1 && stack->values[bottom] < nb && stack->values[0] > nb)
+		// ft_printf("CURRENT BOT (%d) VALUE INSPECTED IN A: %d\n", bottom, a_stack->values[bottom]);
+		if (bottom == a_stack->amount - 1 && a_stack->values[bottom] < nb && a_stack->values[0] > nb)
 		{
-			// ft_printf("Stack values[%d] : %d < %d && stack values at the top: %d > %d\n", bottom, stack->values[bottom], nb, stack->values[0], nb);
+			// ft_printf("Stack values[%d] : %d < %d && stack values at the top: %d > %d\n", bottom, a_stack->values[bottom], nb, a_stack->values[0], nb);
 			// ft_printf("Bottom preference: %d\n", bottom);
 			break ;
 		}
-		if (stack->values[bottom] > nb && stack->values[bottom - 1] < nb)
+		if (a_stack->values[bottom] > nb && a_stack->values[bottom - 1] < nb)
 		{
-			// ft_printf("Stack values[%d] : %d > %d && stack values[%d - 1]: %d < %d\n", bottom, stack->values[bottom], nb, bottom, stack->values[bottom - 1], nb);
+			// ft_printf("Stack values[%d] : %d > %d && stack values[%d - 1]: %d < %d\n", bottom, a_stack->values[bottom], nb, bottom, a_stack->values[bottom - 1], nb);
 			// ft_printf("Bottom preference: %d\n", bottom);
 			break ;
 		}
 		bottom--;
 	}
-	// ft_printf("Bottom: %d\n", bottom);
-
-
-	if (bottom < 0)
-		return (-1);
+	b_stack->values = b_stack->values;
+	// if (bottom < 0)
+	// 	return (-1);
 	// ft_printf("Top first found nb at index:\t%d\n", top);
 	// ft_printf("Bottom first found nb at index:\t%d\n", bottom);
 	if (move == 'm')
-		moves = (stack->amount - bottom) < top ? (stack->amount - bottom) + 1 : top;
-	moves = (stack->amount - bottom) < top ? bottom : top;
-	// ft_printf("\nNEXT SPOT\nmoves: %d with nb being: %d\n", moves, nb);
+	{
+		// ft_printf("Move is true, calculating if rra is faster then ra\n");
+		// (a_stack->amount - bottom) < top ? ft_printf("It is faster to rra\n") : ft_printf("It is faster to ra\n");
+		moves = (a_stack->amount - bottom) < top ? -(a_stack->amount - bottom) : top;
+		// (a_stack->amount - bottom) < top ? ft_printf("Moves to a stack top: a_stack->amount (%d) - bottom (%d) = %d -> negative\n", a_stack->amount, bottom, a_stack->amount - bottom) : ft_printf("Moves to a stack top: %d\n", moves);
+	}
+	else
+		moves = (a_stack->amount - bottom) < top ? bottom : top;
+	// ft_printf(GREEN"\nNEXT SPOT IN A STACK\nmoves: %d with nb being: %d\n"RESET, ft_abs(moves), nb);
 	return (moves);
 }
 

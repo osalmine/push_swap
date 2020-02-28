@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/28 12:45:37 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/28 14:17:58 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,12 @@ void			add_sorted(t_ps *stack, int nb);
 
 int				*prefer_index_b(t_ps *a_stack, t_ps *b_stack);
 int				moves_to_top(t_ps *stack, int nb);
-int				next_spot(t_ps *stack, int nb, char moves);
+int				next_spot(t_ps *a_stack, t_ps *b_stack, int nb, char moves);
 t_list			*print_cmds(t_list *cmds);
 t_list			*free_lst(t_list *lst);
 void			ft_lstrev(t_list **list);
 t_list			*combine_cmds(t_list *cmds);
 void			ft_lstaddend(t_list **alst, t_list *new);
+int				opt_rot(int a_moves, int b_moves);
 
 #endif
