@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/25 12:43:19 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/28 13:18:35 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,8 @@ int		main(int argc, char **argv)
 	free_struct(a_stack);
 	free_struct(b_stack);
 	cmds = combine_cmds(cmds);
-	print_cmds(cmds);
+	// ft_printf("Ok aft comb cmds\n");
+	cmds = print_cmds(cmds);
 	cmds = free_lst(cmds);
 	return (0);
 }

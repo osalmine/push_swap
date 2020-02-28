@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:02 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/12 15:28:06 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/28 13:17:46 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_lstrev(t_list **list)
 
 	prev = NULL;
 	cur = *list;
-	while (cur != NULL)
+	while (cur != NULL && ft_strlen((char*)cur->content) < 4)
 	{
 		next = cur->next;
 		cur->next = prev;
@@ -30,17 +30,18 @@ void	ft_lstrev(t_list **list)
 	*list = prev;
 }
 
-void		print_cmds(t_list *cmds)
+t_list		*print_cmds(t_list *cmds)
 {
 	t_list *head;
 
 	head = cmds;
-	while (head)
+	while (cmds && ft_strlen((char*)cmds->content) < 4)
 	{
-		if ((char*)head->content != NULL)
-			ft_printf("%s\n", (char*)head->content);
-		head = head->next;
+		if ((char*)cmds->content != NULL)
+			ft_printf("%s\n", (char*)cmds->content);
+		cmds = cmds->next;
 	}
+	return (head);
 }
 
 int			find_in_stack(int *arr, int amount, int value)

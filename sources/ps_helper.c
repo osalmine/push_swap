@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/25 13:00:40 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/02/28 13:18:41 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ t_list	*combine_cmds(t_list *cmds)
 	t_list *prev;
 	t_list *head;
 
+	// ft_printf("Printing cmds before combine\n");
+	// cmds = print_cmds(cmds);
+	// ft_printf("Reversing list\n");
 	ft_lstrev(&cmds);
 	head = cmds;
 	while (cmds->next)
