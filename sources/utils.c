@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 16:02:02 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/28 13:17:46 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/01 15:57:12 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@ void	ft_lstrev(t_list **list)
 		cur = next;
 	}
 	*list = prev;
+}
+
+int		check_dups(t_ps *stack)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < stack->amount)
+	{
+		j = i + 1;
+		while (j < stack->amount)
+		{
+			if (stack->values[i] == stack->values[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 t_list		*print_cmds(t_list *cmds)

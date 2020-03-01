@@ -6,31 +6,11 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/12 14:12:15 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/01 16:55:18 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-static int	check_dups(t_ps *stack)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < stack->amount)
-	{
-		j = i + 1;
-		while (j < stack->amount)
-		{
-			if (stack->values[i] == stack->values[j])
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
 
 void		ft_parse_nb(char **av, int ac, t_ps *stack)
 {
@@ -102,6 +82,42 @@ void		ft_parse_str(char *str, t_ps *stack)
 	stack->size = stack->amount;
 }
 
+int			parse_check(t_ps *stack, char **av, int ac)
+{
+	int i;
+
+	i = 0;
+	stack->visual = FALSE;
+	stack->cmd_nb = FALSE;
+	while (ac--)
+	{
+		if (ft_strequ(av[ac], "-v"))
+		{
+			stack->visual = TRUE;
+			i++;
+		}
+		if (ft_strequ(av[ac], "-n"))
+		{
+			stack->cmd_nb = TRUE;
+			i++;
+		}
+		if (ft_strequ(av[ac], "-h"))
+			ft_exit("Usage:\n\
+Push swap solves the numbers given to it as an argument and outputs the \
+commands it used to solve the numbers in the stacks:\n\
+./push_swap 5 1 3 4 2\n\n\
+You can pipe the push_swap to checker, that checks if the stacks can be sorted \
+using these commands:\n\
+./push_swap 5 1 3 4 2 | ./checker 5 1 3 4 2\n\n\
+If checker says \"OK\", the commads were right, if checker says \"KO\", the \
+commands weren't right.\n\
+Options for checker:\n\
+\t-v : Visualize the stacks while they are sorted\n\
+\t-n : Output the number of operations");
+	}
+	return (i);
+}
+
 t_ps		*parse(int ac, char **av)
 {
 	t_ps	*stack;
@@ -115,11 +131,7 @@ t_ps		*parse(int ac, char **av)
 			ft_exit("Parse malloc error");
 		stack->amount = 0;
 		stack->sorted_amount = 0;
-		if (ac >= 2 && ft_strequ(av[1], "-v"))
-		{
-			stack->visual = TRUE;
-			i++;
-		}
+		i += parse_check(stack, av, ac);
 		if ((long long)ft_strlen(av[i]) > ft_atoi(av[i]))
 			ft_parse_str(av[i], stack);
 		else

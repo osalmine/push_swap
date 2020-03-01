@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/01 11:32:53 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/01 16:46:57 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_split(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 
 	while (a_stack->amount > 3)
 	{
-		while (a_stack->values[0] != a_stack->largest && a_stack->values[0] != a_stack->smallest)
+		while (a_stack->values[0] != a_stack->largest && a_stack->values[0] != a_stack->smallest && a_stack->amount > 3)
 			cmds = pb(a_stack, b_stack, cmds);
 		if (a_stack->amount > 3)
 			cmds = ra(a_stack, cmds);
@@ -90,7 +90,8 @@ int		main(int argc, char **argv)
 	cmds = (t_list*)malloc(sizeof(t_list));
 	if (argc < 2)
 		return (0);
-	a_stack = parse(argc, argv);
+	if (!(a_stack = parse(argc, argv)))
+		ft_exit("Parse error");
 	a_stack->print = TRUE;
 	if (is_in_order(*a_stack, 1))
 		return (0);

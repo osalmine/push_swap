@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/28 14:17:58 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/01 16:10:22 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_ps
 	int print;
 
 	int visual;
+	int cmd_nb;
 
 	int *sorted;
 	int sorted_amount;
@@ -93,8 +94,7 @@ void			next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack,
 t_list			*fast_rotate(t_ps *stack, int pos, char ab, char top_bot,
 				t_list *cmds);
 void			b_fast_rot(t_ps *a_stack, t_ps *b_stack);
-void			visual(t_ps *a_stack, t_ps *b_stack, char *command);
-void			clearScreen(void);
+void			visual(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
 int				aft_next_in_order(t_ps *ref, t_ps *stack);
 void			add_sorted(t_ps *stack, int nb);
 
@@ -107,5 +107,6 @@ void			ft_lstrev(t_list **list);
 t_list			*combine_cmds(t_list *cmds);
 void			ft_lstaddend(t_list **alst, t_list *new);
 int				opt_rot(int a_moves, int b_moves);
+int				check_dups(t_ps *stack);
 
 #endif
