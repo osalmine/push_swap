@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:16 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/28 18:42:49 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/01 11:32:46 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ t_list	*combine_cmds(t_list *cmds)
 
 	ft_lstrev(&cmds);
 	head = cmds;
-	ft_printf("Combining commands\nCurrent command list:\n");
-	print_cmds(cmds);
-	ft_printf("Starting to combine\n");
+	// ft_printf("Combining commands\nCurrent command list:\n");
+	// print_cmds(cmds);
+	// ft_printf("Starting to combine\n");
 	while (cmds->next)
 	{
 		prev = cmds;
@@ -77,15 +77,15 @@ t_list	*combine_cmds(t_list *cmds)
 			ptr = cmds;
 			while (ptr && (ft_strequ(ptr->content, "ra") || ft_strequ(ptr->content, "rr")))
 			{
-				ft_printf("IN RA WHILE: ptr: %s\n", ptr->content);
+				// ft_printf("IN RA WHILE: ptr: %s\n", ptr->content);
 				ptr = ptr->next;
 			}
-			ft_printf("Next is: %s\n", ptr->content);
+			// ft_printf("Next is: %s\n", ptr->content);
 			if (ptr && !ft_strequ(ptr->content, "ra") && !ft_strequ(ptr->content, "rr") && ft_strequ(ptr->content, "rb"))
 			{
 				free((char*)(ptr->content));
 				ptr->content = ft_strdup("rr");
-				prev = cmds->next;
+				prev->next = cmds->next;
 				free((char*)(cmds->content));
 				free(cmds);
 				cmds = prev;
@@ -95,48 +95,48 @@ t_list	*combine_cmds(t_list *cmds)
 		}
  		while (cmds && ft_strequ((char*)(cmds->content), "rb"))
 		{
-			ft_printf("Cmds: %s\n", cmds->content);
+			// ft_printf("Cmds: %s\n", cmds->content);
 			ptr = cmds;
 			while (ptr && (ft_strequ(ptr->content, "rb") || ft_strequ(ptr->content, "rr")))
 			{
-				ft_printf("IN RB WHILE: ptr: %s\n", ptr->content);
+				// ft_printf("IN RB WHILE: ptr: %s\n", ptr->content);
 				ptr = ptr->next;
 			}
-			ft_printf("Next is: %s\n", ptr->content);
+			// ft_printf("Next is: %s\n", ptr->content);
 			if (ptr && !ft_strequ(ptr->content, "rb") && !ft_strequ(ptr->content, "rr") && ft_strequ(ptr->content, "ra"))
 			{
-				ft_printf("Freeing ptr cont: %s\n", ptr->content);
+				// ft_printf("Freeing ptr cont: %s\n", ptr->content);
 				free((char*)(ptr->content));
 				ptr->content = ft_strdup("rr");
-				prev = cmds->next;
-				ft_printf("Changed ptr cont to: %s\n", ptr->content);
-				ft_printf("prev->content: %s\n", prev->content);
-				ft_printf("cmds->content: %s, cmds->next->content: %s\n", cmds->content, cmds->next->content);
-				ft_printf("Freeing cmds->content: %s\n", cmds->content);
+				prev->next = cmds->next;
+				// ft_printf("Changed ptr cont to: %s\n", ptr->content);
+				// ft_printf("prev->content: %s\n", prev->content);
+				// ft_printf("cmds->content: %s, cmds->next->content: %s\n", cmds->content, cmds->next->content);
+				// ft_printf("Freeing cmds->content: %s\n", cmds->content);
 				free((char*)(cmds->content));
 				free(cmds);
-				ft_printf("Freed cmds\n");
+				// ft_printf("Freed cmds\n");
 				cmds = prev;
-				ft_printf("Cmds cont after frees: %s\n", cmds->content);
+				// ft_printf("Cmds cont after frees: %s\n", cmds->content);
 			}
 			else
 				break ;
 		}
 		while (cmds && ft_strequ((char*)(cmds->content), "rra"))
 		{
-			ft_printf("RRA: cmds->content: %s\n", cmds->content);
+			// ft_printf("RRA: cmds->content: %s\n", cmds->content);
 			ptr = cmds;
 			while (ptr->next && (ft_strequ(ptr->content, "rra") || ft_strequ(ptr->content, "rrr")))
 			{
-				ft_printf("IN RRA WHILE: ptr: %s\n", ptr->content);
+				// ft_printf("IN RRA WHILE: ptr: %s\n", ptr->content);
 				ptr = ptr->next;
 			}
-			ft_printf("Next is: %s\n", ptr->content);
+			// ft_printf("Next is: %s\n", ptr->content);
 			if (ptr && !ft_strequ(ptr->content, "rra") && !ft_strequ(ptr->content, "rrr") && ft_strequ(ptr->content, "rrb"))
 			{
 				free((char*)(ptr->content));
 				ptr->content = ft_strdup("rrr");
-				prev = cmds->next;
+				prev->next = cmds->next;
 				free((char*)(cmds->content));
 				free(cmds);
 				cmds = prev;
@@ -149,15 +149,15 @@ t_list	*combine_cmds(t_list *cmds)
 			ptr = cmds;
 			while (ptr && (ft_strequ(ptr->content, "rrb") || ft_strequ(ptr->content, "rrr")))
 			{
-				ft_printf("IN RRB WHILE: ptr: %s\n", ptr->content);
+				// ft_printf("IN RRB WHILE: ptr: %s\n", ptr->content);
 				ptr = ptr->next;
 			}
-			ft_printf("Next is: %s\n", ptr->content);
+			// ft_printf("Next is: %s\n", ptr->content);
 			if (ptr && !ft_strequ(ptr->content, "rrb") && !ft_strequ(ptr->content, "rrr") && ft_strequ(ptr->content, "rra"))
 			{
 				free((char*)(ptr->content));
 				ptr->content = ft_strdup("rrr");
-				prev = cmds->next;
+				prev->next = cmds->next;
 				free((char*)(cmds->content));
 				free(cmds);
 				cmds = prev;
@@ -166,8 +166,8 @@ t_list	*combine_cmds(t_list *cmds)
 				break ;
 		}
 	}
-	ft_printf(RED"\n\nCOMBINE IS DONE, CURRENT LIST:\n\n"RESET);
-	print_cmds(cmds);
+	// ft_printf(RED"\n\nCOMBINE IS DONE, CURRENT LIST:\n\n"RESET);
+	// print_cmds(head);
 	return (head);
 }
 
