@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/01 16:55:18 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 11:28:17 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void		ft_parse_nb(char **av, int ac, t_ps *stack)
 
 	i = 0;
 	j = 0;
-	if (ft_strequ(av[1], "-v"))
-		i++;
 	if (!(stack->values = (int*)malloc(sizeof(int) * (ac - (i + 1)))))
 		ft_exit("Parse malloc error");
 	if (!(stack->sorted = (int*)malloc(sizeof(int) * (ac - (i + 1)))))
@@ -102,18 +100,7 @@ int			parse_check(t_ps *stack, char **av, int ac)
 			i++;
 		}
 		if (ft_strequ(av[ac], "-h"))
-			ft_exit("Usage:\n\
-Push swap solves the numbers given to it as an argument and outputs the \
-commands it used to solve the numbers in the stacks:\n\
-./push_swap 5 1 3 4 2\n\n\
-You can pipe the push_swap to checker, that checks if the stacks can be sorted \
-using these commands:\n\
-./push_swap 5 1 3 4 2 | ./checker 5 1 3 4 2\n\n\
-If checker says \"OK\", the commads were right, if checker says \"KO\", the \
-commands weren't right.\n\
-Options for checker:\n\
-\t-v : Visualize the stacks while they are sorted\n\
-\t-n : Output the number of operations");
+			ft_usage();
 	}
 	return (i);
 }
@@ -132,7 +119,8 @@ t_ps		*parse(int ac, char **av)
 		stack->amount = 0;
 		stack->sorted_amount = 0;
 		i += parse_check(stack, av, ac);
-		if ((long long)ft_strlen(av[i]) > ft_atoi(av[i]))
+		if ((long long)ft_strlen(av[i]) > ft_atoi(av[i]) \
+													&& !ft_strequ(av[i], "0"))
 			ft_parse_str(av[i], stack);
 		else
 			ft_parse_nb(av, ac, stack);

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/01 16:10:22 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 16:08:49 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_ps
 
 t_ps			*parse(int ac, char **av);
 void			ft_exit(char *str);
+void			ft_usage(void);
 void			free_strsplit(char ***str);
 void			do_command(t_ps *a_stack, t_ps *b_stack, char *str);
 t_ps			*b_init(t_ps *a_stack);
@@ -84,19 +85,10 @@ t_list			*ft_split(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
 t_list			*ft_insert(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
 int				find_in_stack(int *arr, int amount, int value);
 t_ps			*ref_stack(t_ps *a_stack);
-int				check_with_ref(t_ps *ref, t_ps *stack);
-int				next_in_order(t_ps *ref, t_ps *stack);
-int				nbs_under_med(t_ps *stack, int med);
-int				b_next_int_order(t_ps *ref, t_ps* a_stack, t_ps *b_stack);
 int				amount_in_order(t_ps *ref, t_ps *stack);
-void			next_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack,
-				int med);
-t_list			*fast_rotate(t_ps *stack, int pos, char ab, char top_bot,
-				t_list *cmds);
-void			b_fast_rot(t_ps *a_stack, t_ps *b_stack);
+t_list			*fast_rotate_bot(t_ps *stack, int pos, char ab, t_list *cmds);
+t_list			*fast_rotate_top(t_ps *stack, int pos, char ab, t_list *cmds);
 void			visual(t_ps *a_stack, t_ps *b_stack, t_list *cmds);
-int				aft_next_in_order(t_ps *ref, t_ps *stack);
-void			add_sorted(t_ps *stack, int nb);
 
 int				*prefer_index_b(t_ps *a_stack, t_ps *b_stack);
 int				moves_to_top(t_ps *stack, int nb);
@@ -105,8 +97,8 @@ t_list			*print_cmds(t_list *cmds);
 t_list			*free_lst(t_list *lst);
 void			ft_lstrev(t_list **list);
 t_list			*combine_cmds(t_list *cmds);
-void			ft_lstaddend(t_list **alst, t_list *new);
 int				opt_rot(int a_moves, int b_moves);
 int				check_dups(t_ps *stack);
+void			swap(int *a, int *b);
 
 #endif

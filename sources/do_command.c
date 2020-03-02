@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:49:48 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/01 15:42:13 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 10:24:36 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ int		is_in_order(t_ps stack, int check_size)
 			return (0);
 		stack.amount--;
 	}
-	// ft_printf("Is in order!\n");
 	return (1);
 }
 
 void	do_command(t_ps *a_stack, t_ps *b_stack, char *str)
 {
-	// ft_printf("Command: %s\n", str);
 	if (ft_strequ("sa", str))
 		sa(a_stack, NULL);
 	else if (ft_strequ("sb", str))
@@ -53,12 +51,4 @@ void	do_command(t_ps *a_stack, t_ps *b_stack, char *str)
 		rrr(a_stack, b_stack, NULL);
 	else
 		ft_exit("Command error");
-	// ft_printf("a_stack:\n");
-	// for (int j = 0; j < a_stack->amount; j++) {
-	// 	ft_printf("%d: %d\n", j, a_stack->values[j]);
-	// }
-	// ft_printf("b_stack:\n");
-	// for (int k = 0; k < b_stack->amount; k++) {
-	// 	ft_printf("%d: %d\n", k, b_stack->values[k]);
-	// }
 }

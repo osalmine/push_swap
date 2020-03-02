@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 13:43:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/01 19:59:18 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 11:53:23 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ static int	find_biggest_nb(t_ps *stack)
 	return (biggest);
 }
 
-static void	clearScreen(void)
+static void	clear_screen(void)
 {
-	const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
- 	write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 10);
+	const char *clear_screen_ansi = "\e[1;1H\e[2J";
+
+	write(1, clear_screen_ansi, 10);
 }
 
 static void	print_a(t_ps *a_stack, int biggest, int a)
@@ -70,7 +71,6 @@ static void	print_b(t_ps *a_stack, t_ps *b_stack, int biggest, int b)
 	}
 }
 
-
 void		visual(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 {
 	int a;
@@ -84,12 +84,8 @@ void		visual(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 	{
 		do_command(a_stack, b_stack, cmds->content);
 		system("sleep 0.2");
-		clearScreen();
-		ft_printf(RESET"\n%s:\na_stack:", cmds->content);
-		a = biggest;
-		while (a--)
-			ft_putchar(' ');
-		ft_putstr(" b_stack:\n");
+		clear_screen();
+		ft_printf(RESET"\n%s:\na_stack:%*. b_stack:\n", cmds->content, biggest);
 		a = 0;
 		b = 0;
 		while (a < a_stack->amount || b < b_stack->amount)

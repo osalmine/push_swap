@@ -6,7 +6,7 @@
 #    By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 15:41:53 by osalmine          #+#    #+#              #
-#    Updated: 2020/02/09 15:50:49 by osalmine         ###   ########.fr        #
+#    Updated: 2020/03/02 18:41:02 by osalmine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_PS = push_swap
 NAME_CH = checker
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -O3
+FLAGS = -Wall -Werror -Wextra -O2
 LIBRARIES = -lft -L$(LIBFT_DIRECTORY)
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS)
 
@@ -28,8 +28,8 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./sources/
 SOURCES_LIST =	parse.c ft_exit.c the_frees.c do_command.c swap.c b_init.c \
-				push.c rotate.c rev_rot.c utils.c check_order.c ps_helper.c \
-				visualizer.c ps_small.c
+				push.c rotate.c rev_rot.c utils.c utils2.c ps_helper.c \
+				ps_helper2.c ps_helper3.c visualizer.c ps_small.c
 SOURCES_LIST_PS = push_swap.c
 SOURCES_LIST_CH = checker.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))

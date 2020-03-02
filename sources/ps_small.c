@@ -6,13 +6,13 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 15:49:45 by osalmine          #+#    #+#             */
-/*   Updated: 2020/02/25 10:27:48 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 16:09:30 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	b_next_sm(t_ps* a_stack, t_ps *b_stack)
+static int		b_next_sm(t_ps *a_stack, t_ps *b_stack)
 {
 	int stack_print_copy;
 
@@ -37,7 +37,7 @@ static int	b_next_sm(t_ps* a_stack, t_ps *b_stack)
 	return (0);
 }
 
-static t_list	*sm_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med, t_list *cmds)
+static int		sm_nb_und_med(t_ps *ref, t_ps *a_stack, int med)
 {
 	int top;
 	int bottom;
@@ -60,7 +60,18 @@ static t_list	*sm_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med,
 		bottom--;
 	}
 	i = (a_stack->amount - bottom) < top ? bottom : top;
-	cmds = fast_rotate(a_stack, i, 'a', 't', cmds);
+	return (i);
+}
+
+static t_list	*rotate_small(t_ps *ref, t_ps *a_stack, t_ps *b_stack, \
+																t_list *cmds)
+{
+	int i;
+	int med;
+
+	med = median(a_stack, 0);
+	i = sm_nb_und_med(ref, a_stack, med);
+	cmds = fast_rotate_top(a_stack, i, 'a', cmds);
 	if (b_next_sm(a_stack, b_stack))
 		cmds = pa(a_stack, b_stack, cmds);
 	else if (!is_in_order(*a_stack, 1))
@@ -68,7 +79,7 @@ static t_list	*sm_nb_under_med(t_ps *ref, t_ps *a_stack, t_ps *b_stack, int med,
 	return (cmds);
 }
 
-t_list		*solve_3(t_ps *a_stack, t_list *cmds)
+t_list			*solve_3(t_ps *a_stack, t_list *cmds)
 {
 	int i;
 
@@ -95,11 +106,10 @@ t_list		*solve_3(t_ps *a_stack, t_list *cmds)
 	return (cmds);
 }
 
-t_list		*solve_small(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
+t_list			*solve_small(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 {
 	int		med;
 	t_ps	*ref;
-	// char s[1];
 
 	med = median(a_stack, 0);
 	ref = ref_stack(a_stack);
@@ -107,14 +117,11 @@ t_list		*solve_small(t_ps *a_stack, t_ps *b_stack, t_list *cmds)
 	{
 		while (a_stack->smallest < med && !is_in_order(*a_stack, 1))
 		{
-			// read (0, s, 1);
 			if (b_next_sm(a_stack, b_stack))
 				cmds = pa(a_stack, b_stack, cmds);
 			else
-				cmds = sm_nb_under_med(ref, a_stack, b_stack, med, cmds);
+				cmds = rotate_small(ref, a_stack, b_stack, cmds);
 			ft_small_big(a_stack);
-			// ft_printf("median: %d, a stack smallest: %d\n", med, a_stack->smallest);
-			// read (0, s, 1);
 		}
 		cmds = solve_3(a_stack, cmds);
 		while (b_stack->amount)
