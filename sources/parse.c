@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/02 11:28:17 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:25:27 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static void	str_val_alloc(char **tmp, t_ps *stack)
 	len = 0;
 	while (tmp[len])
 		len++;
-	if (!(stack->values = (int*)malloc(sizeof(int) * len)))
+	if (!(stack->values = (int*)malloc(sizeof(int) * (len + 10))))
 		ft_exit("String malloc error");
-	if (!(stack->sorted = (int*)malloc(sizeof(int) * len)))
+	if (!(stack->sorted = (int*)malloc(sizeof(int) * (len + 10))))
 		ft_exit("String malloc error");
 }
 

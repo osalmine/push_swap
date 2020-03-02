@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 15:15:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/02 10:29:14 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:22:30 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ t_list	*ra(t_ps *a_stack, t_list *cmds)
 	push_up(a_stack);
 	a_stack->values[a_stack->amount - 1] = tmp;
 	if (a_stack->print == TRUE && cmds)
+	{
+		if (cmds->content == NULL)
+		{
+			free(cmds);
+			cmds = NULL;
+		}
 		ft_lstadd(&cmds, ft_lstnew("ra", sizeof(char*)));
+	}
 	return (cmds);
 }
 

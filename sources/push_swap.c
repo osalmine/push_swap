@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:14:57 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/02 16:10:38 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:24:51 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		main(int argc, char **argv)
 	t_ps	*b_stack;
 	t_list	*cmds;
 
-	cmds = (t_list*)malloc(sizeof(t_list));
+	cmds = cmds_init();
 	if (argc < 2)
 		return (0);
 	if (!(a_stack = parse(argc, argv)))

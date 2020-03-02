@@ -6,11 +6,20 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 18:39:52 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/02 18:40:24 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:19:35 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+t_list			*cmds_init(void)
+{
+	t_list *cmds;
+
+	cmds = (t_list*)malloc(sizeof(t_list));
+	cmds->content = NULL;
+	return (cmds);
+}
 
 t_list			*fast_rotate_top(t_ps *stack, int pos, char ab, t_list *cmds)
 {

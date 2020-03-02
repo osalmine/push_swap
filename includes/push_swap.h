@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:15:39 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/02 16:08:49 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:02:19 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ t_list			*combine_cmds(t_list *cmds);
 int				opt_rot(int a_moves, int b_moves);
 int				check_dups(t_ps *stack);
 void			swap(int *a, int *b);
+t_list			*cmds_init(void);
 
 #endif
