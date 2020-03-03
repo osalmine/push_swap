@@ -6,7 +6,7 @@
 #    By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 15:41:53 by osalmine          #+#    #+#              #
-#    Updated: 2020/03/02 18:41:02 by osalmine         ###   ########.fr        #
+#    Updated: 2020/03/03 09:54:34 by osalmine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_PS = push_swap
 NAME_CH = checker
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -O2
+FLAGS = -Wall -Werror -Wextra
 LIBRARIES = -lft -L$(LIBFT_DIRECTORY)
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS)
 
