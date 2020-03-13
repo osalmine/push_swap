@@ -41,7 +41,7 @@ These bonuses are for the checker program:
 
 ## How it works
 
-I made two algorithms for the project. One for 5 and under numbers in the stack and other for everything else. The subject was strict with the number of moves allowed for five numbers, so I made a separate algorith for those.
+I made two algorithms for the project. One for 5 numbers and less in the stack and one for everything else. The subject was strict with the number of moves allowed for five numbers, so I made a separate algorith for those.
 
 I utilize a modified version of insert sort:
 
