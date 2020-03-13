@@ -57,6 +57,11 @@ I utilize a modified version of insert sort:
 
 If checker program is used, it will take in the commands and depending on the options used, it will execute the commaands on the stacks and say OK or KO after the commands have finished.
 
+**My program passes the evaluations benchmarks as follows:**
+
+- With 5 numbers it solves the stack in 10 or less moves every time (minimum required in 12)
+- With 100 numbers it solves the stack in under 700 moves every time (to get full points, it has to go under 700)
+- With 500 numbers, it solves the stack in under 5500 moves except around 5-10 times in 1000 tries (to get full points, it has to go under 5500, but mine was close enough to get full points)
 
 ### Some problems:
 
