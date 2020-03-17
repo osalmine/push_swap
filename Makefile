@@ -63,7 +63,7 @@ $(OBJECTS_DIRECTORY):
 
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
 	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
-	@echo "$@ \c"
+	@echo ". \c"
 
 $(LIBFT):
 	@echo "creating $(LIBFT)"
@@ -75,6 +75,7 @@ clean:
 	@echo "$(OBJECTS_DIRECTORY) was deleted"
 
 fclean: clean
+	@$(MAKE) -sC $(LIBFT_DIRECTORY) fclean
 	@rm -f $(LIBFT)
 	@rm -f $(NAME_CH)
 	@rm -f $(NAME_PS)

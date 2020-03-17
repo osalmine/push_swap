@@ -40,17 +40,14 @@ $(NAME): $(INCLUDE) $(SOURCE)
 	@cp $(PRINTF_DIR)$(PRINTF_LIB) $(NAME)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "Compiled $(NAME)"
 
 clean:
 	@make -C $(PRINTF_DIR) clean
 	@rm -f $(OBJ)
-	@echo "Cleaned obj files"
 
 fclean: clean
 	@make -C $(PRINTF_DIR) fclean
 	@rm -f $(NAME)
-	@echo "Cleaned $(NAME)"
 
 re: fclean all
 	@make -C $(PRINTF_DIR) re

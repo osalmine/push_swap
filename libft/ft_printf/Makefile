@@ -24,11 +24,9 @@ $(NAME):
 	@gcc $(FLAGS) -I$(INCLUDE) -c $(SOURCE)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "Compiled $(NAME)"
 
 clean:
 	@rm -f $(OBJ)
-	@echo Cleaned
 
 fclean: clean
 	@rm -f $(NAME)
