@@ -42,7 +42,8 @@ static void		cmd_lst(t_list *cmds, t_ps *a_stack, t_ps *b_stack)
 	if (a_stack->cmd_nb == TRUE)
 	{
 		cmds = head;
-		ft_printf(RESET"Number of commands: %d\n", lst_size(cmds));
+		ft_printf(RESET"Number of commands: ");
+		ft_printf(UNDERLINE"%d\n"RESET, lst_size(cmds));
 		free_lst(head);
 	}
 }
@@ -80,11 +81,6 @@ int				main(int argc, char **argv)
 		return (0);
 	a_stack = parse(argc, argv);
 	b_stack = b_init(a_stack);
-	if (is_in_order(*a_stack, 1))
-	{
-		ft_printf("OK\n");
-		return (0);
-	}
 	if ((cmds = check(a_stack, b_stack)))
 		cmd_lst(cmds, a_stack, b_stack);
 	if (!is_in_order(*a_stack, 1))

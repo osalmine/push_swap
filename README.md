@@ -62,8 +62,3 @@ If checker program is used, it will take in the commands and depending on the op
 - With 5 numbers it solves the stack in 10 or less moves every time (minimum required in 12)
 - With 100 numbers it solves the stack in under 700 moves every time (to get full points, it has to go under 700)
 - With 500 numbers, it solves the stack in under 5500 moves except around 5-10 times in 1000 tries (to get full points, it has to go under 5500, but mine was close enough to get full points)
-
-### Some problems:
-
-- Checker will say OK and exit if the values are initially in order, should be easy to fix if I'd want to.
-- For some really weird reason `./checker "10 5 1 2 3"` won't work, but `./checker 10 5 1 2 3` does work (same for push swap). The problem probably is somewhere in the parser as it parses strings and numbers differently.

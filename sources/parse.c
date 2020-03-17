@@ -119,8 +119,8 @@ t_ps		*parse(int ac, char **av)
 		stack->amount = 0;
 		stack->sorted_amount = 0;
 		i += parse_check(stack, av, ac);
-		if ((long long)ft_strlen(av[i]) > ft_atoi(av[i]) \
-													&& !ft_strequ(av[i], "0"))
+		if ((int)ft_strlen(av[i]) > ft_nbs(ft_atoi(av[i])) \
+					&& !ft_strequ(av[i], "0"))
 			ft_parse_str(av[i], stack);
 		else
 			ft_parse_nb(av, ac, stack);
