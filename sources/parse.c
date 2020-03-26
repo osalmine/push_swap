@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 12:03:29 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/27 00:38:22 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/27 00:45:55 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void		ft_parse_nb(char **av, int ac, t_ps *stack, int i)
 		ft_exit("Parse malloc error");
 	while (i < ac - 1)
 	{
-		ft_printf("av[%d]: %s\n", i + 1, av[i + 1]);
 		if (ft_atoi(av[i + 1]) > 2147483647 || ft_atoi(av[i + 1]) < -2147483648
 			|| (!ft_isdigit(av[i + 1][ft_strlen(av[i + 1]) - 1])
 			&& av[i + 1][ft_strlen(av[i + 1]) - 1] != 0)

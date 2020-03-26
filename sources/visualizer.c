@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 13:43:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/03/02 11:53:23 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/03/27 00:44:43 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	find_biggest_nb(t_ps *stack)
 static void	clear_screen(void)
 {
 	const char *clear_screen_ansi = "\e[1;1H\e[2J";
-
 	write(1, clear_screen_ansi, 10);
 }
 
