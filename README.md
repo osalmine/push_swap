@@ -41,24 +41,24 @@ These bonuses are for the checker program:
 
 ## How it works
 
-I made two algorithms for the project. One for 5 numbers and less in the stack and one for everything else. The subject was strict with the number of moves allowed for five numbers, so I made a separate algorith for those.
+I made two algorithms for the project. One for 5 numbers and less in the stack and one for everything else. The subject was strict with the number of moves allowed for five numbers, so I made a separate algorith for that.
 
 I utilize a modified version of insert sort:
 
-1. Put all but the smalles, biggest and the last remaining number to B stack, and sort the three numbers on the A stack.
-2. Calculate the least number of moves to get a number from the B stack to the A stack to the right position. A right position for a number is a place, where the numbers on top of it are smaller and the numbers below it are bigger. This way eventually all numbers are sorted.
+1. Put all except the smallest, biggest and the last remaining number to B stack, and sort the three numbers on the A stack.
+2. Calculate the least number of moves to get some number from the B stack to the A stack in to the right position. A right position for a number is a place where the numbers on top of it are smaller and the numbers below it are bigger. This way eventually all numbers are sorted.
   * The algorithm calculates the number of moves to rotate the A stack so the number inspected can be placed from the B stack (e.g. is is better to ra or rra and how many times)
   * It also calculates the same for B stack.
-  * It takes into account that it can combine commands (ra + rb = rr , rra + rrb = rrr). This way ra, ra, ra, rrb, rrb, rrb costs 6 moves but ra, ra, ra, ra, rb, rb, rb, rb costs 4 moves as the commands can be combined.
+  * It takes into account that it can combine commands (ra + rb = rr , rra + rrb = rrr). This way ra, ra, ra, rrb, rrb, rrb costs 6 moves but ra, ra, ra, ra, rb, rb, rb, rb costs 4 moves as the commands can be combined (rr, rr, rr, rr).
 3. Rotate the stacks accordingly and put the number to A stack.
 4. Repeat until B stack is empty
 5. Either use ra or rra to get the A stack's largest number to the bottom, depending on where that number is.
-6. At this point push_swap has placed all the commands into a linked list. Now it will go through that list and combine the commands that it can combine and print out the list.
+6. At this point push_swap has placed all the commands into a linked list. Now it will go through that list and combine the commands that it can and print out the list.
 
-If checker program is used, it will take in the commands and depending on the options used, it will execute the commaands on the stacks and say OK or KO after the commands have finished.
+If checker program is used, it will take in the commands and depending on the options used, it will execute the commands on the stacks and output OK or KO after the commands have finished.
 
 **My program passes the evaluations benchmarks as follows:**
 
-- With 5 numbers it solves the stack in 10 or less moves every time (minimum required in 12)
+- With 5 numbers it solves the stack in 10 or less moves every time (minimum required is in 12)
 - With 100 numbers it solves the stack in under 700 moves every time (to get full points, it has to go under 700)
 - With 500 numbers, it solves the stack in under 5500 moves except around 5-10 times in 1000 tries (to get full points, it has to go under 5500, but mine was close enough to get full points)
