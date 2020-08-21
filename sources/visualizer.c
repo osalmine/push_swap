@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 13:43:17 by osalmine          #+#    #+#             */
-/*   Updated: 2020/08/21 23:32:53 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/08/21 23:35:21 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	clear_screen(void)
 	char clear_screen_ansi[11];
 
 	ft_strcpy(clear_screen_ansi, "\e[1;1H\e[2J");
-	// clear_screen_ansi = "\e[1;1H\e[2J";
 	write(1, clear_screen_ansi, 10);
 }
 
