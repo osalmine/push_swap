@@ -30,7 +30,9 @@ static int	find_biggest_nb(t_ps *stack)
 
 static void	clear_screen(void)
 {
-	const char *clear_screen_ansi = "\e[1;1H\e[2J";
+	const char *clear_screen_ansi[10];
+
+	clear_screen_ansi = "\e[1;1H\e[2J";
 	write(1, clear_screen_ansi, 10);
 }
 
