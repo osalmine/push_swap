@@ -5,6 +5,10 @@ Because swap_push isn’t as natural
 
 This is the first algorithms branch project I did at Hive Helsinki.
 
+Grade:
+
+[![push_swap grade](https://badge42.herokuapp.com/api/project/osalmine/Push_swap)](https://github.com/JaeSeoKim/badge42)
+
 ## Usage
 
 After cloning the repo and going to it's folder, you can use these make commands:
