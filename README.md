@@ -21,7 +21,7 @@ After cloning the repo and going to it's folder, you can use these make commands
 * To fclean and compile:
   * `make re`
 
-After compiling you have two executables, checker and push_swap.
+After compiling you have two executables: `checker` and `push_swap`.
 
 Run `./checker -h` to see the usage.
 
@@ -31,7 +31,7 @@ A handy script to use:
 ARG=`ruby -e "puts (1..50).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG
 ```
 
-, where it suffles numbers from 1 to 50 into a random order.
+where it suffles numbers from 1 to 50 into a random order.
 
 **SEE [SUBJECT](push_swap.en.pdf) FOR MORE DETAILS**
 
@@ -51,7 +51,7 @@ I utilize a modified version of insert sort:
 
 1. Put all except the smallest, biggest and the last remaining number to B stack, and sort the three numbers on the A stack.
 2. Calculate the least number of moves to get some number from the B stack to the A stack in to the right position. A right position for a number is a place where the numbers on top of it are smaller and the numbers below it are bigger. This way eventually all numbers are sorted.
-  * The algorithm calculates the number of moves to rotate the A stack so the number inspected can be placed from the B stack (e.g. is is better to ra or rra and how many times)
+  * The algorithm calculates the number of moves to rotate the A stack so the number inspected can be placed from the B stack (e.g. is it better to ra or rra and how many times)
   * It also calculates the same for B stack.
   * It takes into account that it can combine commands (ra + rb = rr , rra + rrb = rrr). This way ra, ra, ra, rrb, rrb, rrb costs 6 moves but ra, ra, ra, ra, rb, rb, rb, rb costs 4 moves as the commands can be combined (rr, rr, rr, rr).
 3. Rotate the stacks accordingly and put the number to A stack.
