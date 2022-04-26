@@ -7,7 +7,7 @@ This is the first algorithms branch project I did at Hive Helsinki.
 
 Grade:
 
-![push_swap grade](https://badge42.herokuapp.com/api/project/osalmine/Push_swap)
+[![osalmine's Push_swap Score](https://badge42.vercel.app/api/v2/cl2gijtz7003009mofz5pnp5t/project/1778078)](https://github.com/JaeSeoKim/badge42)
 
 ## Usage
 
