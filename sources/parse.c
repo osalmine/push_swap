@@ -52,11 +52,9 @@ static void	str_val_alloc(char **tmp, t_ps *stack)
 
 void		ft_parse_str(char *str, t_ps *stack)
 {
-	int		amount;
 	int		i;
 	char	**tmp;
 
-	amount = 0;
 	i = 0;
 	tmp = ft_strsplit(str, ' ');
 	str_val_alloc(tmp, stack);
